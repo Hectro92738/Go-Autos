@@ -1,0 +1,153 @@
+@keyframes fadeBackground {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes fadeOverlay {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleLogo {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.overlay {
+  z-index: 10;
+  position: relative;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  animation: fadeOverlay 1s ease-out 1s forwards;
+  opacity: 0;
+  transform: translateY(30px);
+
+  .logo {
+    width: 100px;
+    height: auto;
+    z-index: 11;
+    animation: scaleLogo 1.2s ease-out 1.5s forwards;
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  .titulo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #e6e6e6;
+  }
+
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+
+  .input-wrapper {
+    width: 100%;
+    max-width: 280px;
+    --background: rgba(255, 255, 255, 0.241) !important;
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    color: white;
+
+    ion-input {
+      color: white;
+      padding-left: 10px;
+    }
+
+    .eye-icon {
+      color: white;
+      font-size: 20px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+  }
+
+  .btn-login {
+    width: 220px;
+    background: #d62828;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 22px;
+    border-radius: 30px;
+    margin-top: 10px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-google {
+    width: 220px;
+    background: #ffffff;
+    border: none;
+    padding: 28px 28px 28px 48px;
+    border-radius: 30px;
+    margin-top: 10px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 45%;
+      width: 20px;
+      height: auto;
+      transform: translateY(-50%);
+    }
+  }
+
+  .registro {
+    color: #ffffff;
+    margin-top: 20px;
+    font-size: 14px;
+
+    a {
+      color: #ffffff;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+// Teléfonos pequeños (hasta 480px)
+@media (max-width: 480px) {
+  .overlay {
+
+  }
+}
+
+// Tablets (481px a 768px)
+@media (min-width: 481px) and (max-width: 768px) {
+  .overlay {
+  }
+}
+

@@ -1,0 +1,84 @@
+.custom-toolbar {
+  --background: #2c2727;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+
+  ion-buttons {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    width: 6%;
+  }
+
+  .search-bar {
+    flex: 1;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .custom-search {
+    width: 50%;
+    --background: #3a3535;
+    --color: #ffffff;
+    --placeholder-color: #cccccc;
+    --icon-color: #cccccc;
+    --border-radius: 10px;
+    // height: 40px;
+  }
+
+  ion-icon {
+    font-size: 24px;
+    color: white;
+    margin-right: 2px;
+  }
+
+  ion-button:hover {
+    border-bottom: #ff0000 solid 2px;
+    // color: #ff0000;
+    // ion-icon {
+    //   color: #ff0000;
+    // }
+  }
+}
+
+
+/* Teléfonos pequeños */
+@media (max-width: 480px) {
+  .logo {
+    width: 20%;
+  }
+
+  .custom-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+
+    .custom-search {
+      width: 100%;
+    }
+
+    ion-buttons[slot="start"],
+    ion-buttons[slot="end"] {
+      justify-content: center;
+    }
+  }
+}
+
+/* Tablets y pantallas medianas */
+@media (min-width: 481px) and (max-width: 768px) {
+  .logo {
+    width: 12%;
+  }
+
+  .custom-search {
+    width: 100%;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+}

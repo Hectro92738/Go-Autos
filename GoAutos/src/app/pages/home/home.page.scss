@@ -1,0 +1,52 @@
+// Teléfonos pequeños (hasta 480px)
+@media (max-width: 480px) {
+  .btn_filtro {
+    font-size: 12px;
+  }
+}
+
+
+.auto-card {
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  ion-card-content {
+    padding: 16px;
+  }
+
+  .auto-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .auto-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    ion-icon {
+      font-size: 1.4rem;
+      color: #c00;
+    }
+  }
+
+  .precio {
+    color: #3880ff;
+    font-weight: bold;
+    margin-top: 8px;
+  }
+}

@@ -1,0 +1,36 @@
+
+<app-navbar *ngIf="!showSplash"></app-navbar>
+<app-bienvenida *ngIf="showSplash"></app-bienvenida>
+<ion-content *ngIf="!showSplash">
+  <ion-grid class="ion-padding">
+    <!-- Filtros -->
+    <ion-row class="ion-justify-content-between ion-padding-vertical">
+      <ion-col size="3" size-sm="3" *ngFor="let filtro of filtros">
+        <ion-button class="btn_filtro" color="medium" expand="block" fill="outline" shape="round" size="small">
+          {{ filtro }}
+          <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <!-- Cards de autos -->
+    <ion-row>
+      <ion-col size="6" size-sm="3" *ngFor="let auto of autos">
+        <ion-card>
+          <img [src]="auto.imagen" [alt]="auto.modelo" loading="lazy" width="50%" />
+          <ion-card-content>
+            <p class="marca">{{ auto.marca }}
+            </p>
+            <h2>{{ auto.modelo }}</h2>
+            <p>{{ auto.anio }}</p>
+            <p>{{ auto.tipo }}</p>
+            <h3>{{ auto.precio | currency:'MXN' }}</h3>
+            <ion-button fill="clear" size="small" slot="end">
+              <ion-icon name="heart-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

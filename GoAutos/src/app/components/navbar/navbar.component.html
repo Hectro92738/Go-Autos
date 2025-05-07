@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="custom-toolbar" color="dark">
+
+    <ion-buttons slot="start">
+      <img src="assets/icon/goautos.webp" loading="lazy" alt="Go Autos" class="logo" />
+
+      <div class="search-bar" *ngIf="estaEnHome">
+        <ion-searchbar placeholder="Buscar..." animated="true" showCancelButton="never" class="custom-search"
+          color="medium"></ion-searchbar>
+      </div>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+
+      <!-- Ocultar en teléfono y tablet -->
+      <ng-container *ngIf="!esDispositivoMovil">
+        <ion-button fill="clear" (click)="redirecion('home')">
+          <ion-icon name="car-outline"></ion-icon>
+          Autos
+        </ion-button>
+        <ion-button fill="clear" (click)="redirecion('#')">
+          <ion-icon name="add-outline"></ion-icon>
+          Agregar
+        </ion-button>
+        <ion-button fill="clear" (click)="redirecion('faviritos')">
+          <ion-icon name="heart-outline"></ion-icon>
+          Favoritos
+        </ion-button>
+        <ion-button fill="clear" (click)="redirecion('mensajes')">
+          <ion-icon name="chatbubble-outline"></ion-icon>
+          Mensajes
+        </ion-button>
+        <ion-button fill="clear" (click)="redirecion('inicio')">
+          Iniciar sesión
+        </ion-button>
+      </ng-container>
+
+      <ion-button fill="clear" (click)="openMenu()">
+        <ion-icon name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

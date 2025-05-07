@@ -1,0 +1,31 @@
+// For information on how to create your own theme, please see:
+// http://ionicframework.com/docs/theming/
+
+:root {
+  --ion-color-dark:    #000000;
+  --ion-color-danger:  #ff0000;
+
+  --ion-safe-area-top: env(safe-area-inset-top);
+  --ion-safe-area-bottom: env(safe-area-inset-bottom);
+}
+
+ion-header {
+  padding-top: env(safe-area-inset-top);
+}
+
+@supports (padding-top: constant(safe-area-inset-top)) {
+  ion-header {
+    padding-top: constant(safe-area-inset-top);
+  }
+}
+
+// :host {
+//   display: block !important;
+//   padding-top: constant(safe-area-inset-top) !important;
+//   padding-top: env(safe-area-inset-top) !important;
+//   background: var(--ion-color-dark) !important;
+//   z-index: 10 !important;
+// }
+// ion-header, ion-toolbar {
+//   padding-top: env(safe-area-inset-top) !important;
+// }

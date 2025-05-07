@@ -1,0 +1,23 @@
+<div class="overlay" >
+  <img src="assets/icon/goautos.webp" loading="lazy" alt="Go Autos" class="logo" />
+  <h1 class="titulo">Login</h1>
+  <form class="login-form">
+    <ion-item lines="none" class="input-wrapper">
+      <ion-input type="text" placeholder="Usuario"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="input-wrapper">
+      <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="Contraseña"></ion-input>
+      <ion-icon name="{{ showPassword ? 'eye-off' : 'eye' }}" slot="end" (click)="showPassword = !showPassword"
+        class="eye-icon"></ion-icon>
+    </ion-item>
+
+    <button type="submit" class="btn-login">iniciar sesión</button>
+
+    <button type="button" class="btn-google">
+      <img src="assets/img/google.png" loading="lazy" alt="Google Login" />
+    </button>
+
+    <p class="registro">¿No tienes una cuenta? <a href="#">Registrarme</a></p>
+  </form>
+</div>

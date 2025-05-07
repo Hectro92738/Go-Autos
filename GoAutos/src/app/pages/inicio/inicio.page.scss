@@ -1,0 +1,30 @@
+.home-bg {
+  background-color: black;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-top: 5rem !important;
+}
+
+ion-content {
+  --background: transparent;
+  position: relative;
+}
+
+.home-bg::before {
+  // animation: fadeBackground 1s ease-in forwards;
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  // background: url('/assets/icon/splas.jpg') no-repeat center center / cover;
+  background: url('/assets/icon/splas.webp') no-repeat center center / cover;
+  opacity: 0.3;
+  z-index: 0;
+  pointer-events: none;
+}
+

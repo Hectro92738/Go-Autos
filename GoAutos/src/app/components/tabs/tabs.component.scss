@@ -1,0 +1,20 @@
+:host {
+  // position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+ion-tab-bar {
+  --background: #1e1e1e;
+  color: white;
+}
+
+ion-badge {
+  position: absolute;
+  top: 2px;
+  right: 10px;
+  font-size: 0.6rem;
+}
+
