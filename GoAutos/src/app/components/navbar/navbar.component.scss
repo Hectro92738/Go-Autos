@@ -12,7 +12,10 @@
 
   .logo {
     width: 10%;
-    margin-left: 7px
+    margin-left: 7px;
+    @media (max-width: 768px) {
+      width:27%;
+    }
   }
 
   .search-bar {
@@ -56,7 +59,7 @@
   .custom-toolbar {
     flex-direction: column;
     align-items: stretch;
-    height: 60px;
+    height: 50px;
 
     .custom-search {
       width: 100%;

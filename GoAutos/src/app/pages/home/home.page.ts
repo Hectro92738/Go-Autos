@@ -16,10 +16,9 @@ export class HomePage implements OnInit {
   textoCompleto: string = 'Compra y acelera';
   textoAnimado: string = '';
   textoIndex = 0;
-  totalTextos = 3;
+  totalTextos = 2;
   esDispositivoMovil: boolean = false;
   formNotificacion: FormGroup;
-
 
   constructor(
     private menu: MenuController,
@@ -51,6 +50,16 @@ export class HomePage implements OnInit {
       alert('¡Gracias! Te notificaremos pronto 🚀');
       this.formNotificacion.reset();
     }
+
+    if (this.formNotificacion.invalid) {
+      this.formNotificacion.markAllAsTouched();
+      return;
+    }
+
+    const datos = this.formNotificacion.value;
+    console.log('Datos del formulario:', datos);
+    alert('¡Gracias! Te notificaremos pronto 🚀');
+    this.formNotificacion.reset();
   }
 
   escribirTexto() {
@@ -63,5 +72,4 @@ export class HomePage implements OnInit {
       }
     }, 150);
   }
-
 }
