@@ -1,52 +1,464 @@
-// Teléfonos pequeños (hasta 480px)
-@media (max-width: 480px) {
-  .btn_filtro {
-    font-size: 12px;
+ion-content {
+  --background: var(--ion-color-dark) !important;
+}
+
+.goautos-bg {
+  --background: transparent;
+  display: block;
+
+  .overlay {
+    width: 100%;
+    height: 550px;
+    // background: url('/assets/autos/publicidad/c2.webp') no-repeat center center / cover;
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, #000000 100%),
+      url('/assets/autos/publicidad/arcos3.png') no-repeat center center / cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .contenido-principal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .bloque-contenido {
+      border-radius: 20px;
+      padding: 3rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      // ✅ Escritorio (pantallas grandes)
+      @media (min-width: 1200px) {
+        width: 150%;
+      }
+
+      // ✅ Tablet (pantallas medianas)
+      @media (min-width: 768px) and (max-width: 1199px) {
+        width: 90%;
+      }
+
+      // ✅ Móvil (pantallas pequeñas)
+      @media (max-width: 767px) {
+        width: 90%;
+      }
+    }
+
+    .titulo {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: white;
+
+      // ✅ Escritorio (pantallas grandes)
+      @media (min-width: 1200px) {
+        font-size: 36px;
+      }
+
+      // ✅ Tablet (pantallas medianas)
+      @media (min-width: 768px) and (max-width: 1199px) {
+        font-size: 30px;
+      }
+
+      // ✅ Móvil (pantallas pequeñas)
+      @media (max-width: 767px) {
+        font-size: 22px;
+      }
+    }
+
+    .descripcion {
+      font-size: 1rem;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+    }
+
+    .buscador {
+      margin-bottom: 1.5rem;
+      --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      --border-radius: 12px;
+    }
+
+    .logo-goautos {
+      position: absolute;
+      top: 30px;
+      width: 110px;
+      height: auto;
+      z-index: 10;
+      filter: drop-shadow(0 2px 4px rgba(232, 9, 9, 0));
+    }
+
+    .btn-vender {
+      background-color: var(--ion-color-danger);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 10px rgba(255, 0, 0, 0.764);
+      border: none;
+      cursor: pointer;
+    }
+
+    .typing {
+      color: white;
+      font-weight: bold;
+      border-right: 2px solid #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      width: fit-content;
+      animation: blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes blink-caret {
+
+      from,
+      to {
+        border-color: transparent
+      }
+
+      50% {
+        border-color: white
+      }
+    }
   }
 }
 
 
-.auto-card {
-  border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease;
-  cursor: pointer;
+// #### ----------------------- PRIMERA SECCIÓN -----------------------  #### //
 
-  &:hover {
-    transform: scale(1.02);
+.contenedor-1 {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem;
+  background: transparent;
+  margin-bottom: 0rem;
+  margin-top: 0;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    margin-bottom: 1rem;
+    height: 150px;
   }
 
-  ion-card-content {
-    padding: 16px;
+  .card-texto {
+    background: rgba(255, 255, 255, 0.041);
+    // box-shadow: 0 4px 30px rgba(255, 255, 255, 0.046);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 2rem 3rem;
+    text-align: center;
+    width: 900px;
+
+    @media (max-width: 768px) {
+      padding: 5px 5px;
+      width: 100%;
+    }
   }
 
-  .auto-img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-bottom: 1px solid #ccc;
+  .gif_carita {
+    width: 70px;
+    height: auto;
   }
 
-  .auto-header {
+  .descripcion-2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.5; //separación entre lineas vetialmente
+    margin: 0;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease-out forwards;
+    animation-delay: 0.8s;
+    letter-spacing: 0.00em; // Espaciado entre letras
+    word-spacing: 0.3em; // Espaciado entre palabras
+
+    span {
+      background-color: var(--ion-color-danger);
+      border-radius: 8px;
+      padding: 1px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 20px;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+}
+
+// #### ----------------------- SEGUNDA SECCIÓN -----------------------  #### //
+
+.contenedor-centro {
+  width: 100%;
+  height: 290px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    height: auto;
+  }
+}
+
+@each $color,
+$value in (primero: #ff3c3c,
+  segundo: #ff803c,
+  tersero: #ffc13c,
+) {
+  .card-hatchback-#{$color} {
+    width: 340px;
+    height: 320px;
+    background-color: $value;
+    border-radius: 20px;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: #ffffff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.647);
+  }
+}
 
-    h2 {
-      font-size: 1.2rem;
-      margin: 0;
+.card-texto {
+  z-index: 2;
+
+  p {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  strong {
+    font-weight: 700;
+    font-size: 1.3rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.506);
+    line-height: 1;
+    margin-top: 1.5rem;
+  }
+}
+
+@each $img,
+$value in (primero: url('/assets/autos/blanco.webp'),
+  segundo: url('/assets/autos/azul.webp'),
+  tersero: url('/assets/autos/rojo.webp'),
+) {
+  .card-auto-fondo-#{$img} {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 80%;
+    height: 55%;
+    background-image: $value;
+    background-size: cover;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    z-index: 1;
+    transition: transform 0.4s ease-out;
+  }
+}
+
+.card-hatchback-primero:hover .card-auto-fondo-primero {
+  transform: translateY(-25px);
+}
+
+.card-hatchback-segundo:hover .card-auto-fondo-segundo {
+  transform: translateX(-25px);
+}
+
+.card-hatchback-tersero:hover .card-auto-fondo-tersero {
+  transform: translateY(30px);
+}
+
+
+
+
+
+// #### ----------------------- TERCERA SECCIÓN -----------------------  #### //
+.seccion-mensajes {
+  background: #00000000;
+  padding: 2rem 1rem;
+  text-align: center;
+  height: 300px;
+  margin-top: 3rem;
+
+  .mensajes-contenido {
+    max-width: 500px;
+    margin: auto;
+  }
+
+  .descripcion-2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.5; //separación entre lineas vetialmente
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease-out forwards;
+    animation-delay: 0.8s;
+    letter-spacing: 0.00em; // Espaciado entre letras
+    word-spacing: 0.3em; // Espaciado entre palabras
+
+    span {
+      background-color: var(--ion-color-danger);
+      border-radius: 8px;
+      padding: 1px;
+      color: #ffffff;
     }
 
-    ion-icon {
-      font-size: 1.4rem;
-      color: #c00;
+    @media (max-width: 768px) {
+      font-size: 20px;
     }
   }
 
-  .precio {
-    color: #3880ff;
-    font-weight: bold;
-    margin-top: 8px;
+}
+
+
+// #### ----------------------- CUARTA SECCIÓN -----------------------  #### //
+
+.seccion-notificacion {
+  background: #ffffff;
+  padding: 2rem 1rem;
+  text-align: center;
+
+  margin-top: 0rem;
+
+  .notificacion-contenido {
+    max-width: 500px;
+    margin: auto;
   }
+
+  .notificacion-titulo {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .notificacion-descripcion {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  ion-item {
+    margin-bottom: 1rem;
+  }
+
+  .descripcion-2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: 800;
+    color: #000000;
+    line-height: 1.5; //separación entre lineas vetialmente
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease-out forwards;
+    animation-delay: 0.8s;
+    letter-spacing: 0.00em; // Espaciado entre letras
+    word-spacing: 0.3em; // Espaciado entre palabras
+
+    span {
+      background-color: var(--ion-color-danger);
+      border-radius: 8px;
+      padding: 1px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 20px;
+    }
+  }
+
+}
+
+
+
+
+.contenedor-blob {
+  position: relative;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blob-mask {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.1 / 0.85;
+  background: white;
+  padding: 1.2rem; // más "borde blanco"
+  clip-path: path('M433,319Q419,390,354.5,420Q290,450,215,435Q140,420,98.5,360Q57,300,72,225Q87,150,133.5,90Q180,30,253.5,43Q327,56,372,98.5Q417,141,437,190.5Q457,240,433,319Z');
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.324);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.imagen-blob {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  display: block;
+}
+
+/* Burbujas */
+.burbuja {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.naranja {
+  background-color: #ff6b00;
+  top: 10%;
+  left: 85px;
+}
+
+.roja {
+  background-color: #ff1a1a;
+  bottom: 15%;
+  right: 130px;
 }

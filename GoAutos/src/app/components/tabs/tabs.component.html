@@ -1,25 +1,27 @@
 <ion-tab-bar slot="bottom" color="dark">
 
   <ion-tab-button (click)="redirecion('home')">
-    <ion-icon name="car-outline"></ion-icon>
-    <ion-label>Autos</ion-label>
+    <ion-icon name="home"></ion-icon>
+    <ion-label>home</ion-label>
   </ion-tab-button>
 
-  <ion-tab-button>
-    <ion-icon name="add-outline"></ion-icon>
-    <ion-label>Agrega</ion-label>
+  <ion-tab-button (click)="redirecion('nuevos')">
+    <ion-icon name="car-sport"></ion-icon>
+    <ion-label>Nuevos</ion-label>
   </ion-tab-button>
 
-  <ion-tab-button>
-    <ion-icon name="heart-outline"></ion-icon>
+  <ion-tab-button  (click)="redirecion('seminuevos')">
+    <ion-icon name="car"></ion-icon>
+    <ion-label>Seminuevos</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button (click)="redirecion('faviritos')">
+    <ion-icon name="heart"></ion-icon>
     <ion-label>Favoritos</ion-label>
-    <!-- <ion-badge color="danger" *ngIf="notificacionesFavoritos > 0">
-        {{ notificacionesFavoritos }}
-      </ion-badge> -->
   </ion-tab-button>
 
-  <ion-tab-button>
-    <ion-icon name="chatbubble-outline"></ion-icon>
+  <ion-tab-button  (click)="redirecion('mensajes')">
+    <ion-icon name="chatbubble-ellipses"></ion-icon>
     <ion-label>Mensajes</ion-label>
   </ion-tab-button>
 

@@ -1,5 +1,5 @@
 .home-bg {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0);
   position: relative;
   display: flex;
   justify-content: center;
@@ -22,7 +22,7 @@ ion-content {
   width: 100vw;
   height: 100vh;
   // background: url('/assets/icon/splas.jpg') no-repeat center center / cover;
-  background: url('/assets/icon/splas.webp') no-repeat center center / cover;
+  background: url('/assets/autos/publicidad/arcos3.png') no-repeat center center / cover;
   opacity: 0.3;
   z-index: 0;
   pointer-events: none;

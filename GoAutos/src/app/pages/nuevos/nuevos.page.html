@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+<!-- <app-bienvenida *ngIf="showSplash"></app-bienvenida> -->
+<ion-content>
+  <ion-grid>
+
+    <!-- Filtros -->
+    <ion-row class="filtros-row ion-padding-vertical">
+      <ion-col size="auto" *ngFor="let filtro of filtros">
+        <ion-button class="filtro-btn" fill="clear" size="small" (click)="mostrarOpciones($event, filtro.tipo)">
+          {{ filtro.label }}
+          <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <!-- Catálogo de autos -->
+    <ion-row class="catalogo-autos">
+      <ion-col size="6" size-sm="6" size-md="4" size-lg="3"  *ngFor="let auto of autos">
+        <ion-card class="auto-card">
+          <ion-img [src]="auto.imagen" [alt]="auto.modelo" loading="lazy" class="img-auto"></ion-img>
+          <ion-card-header>
+            <ion-card-subtitle class="marca-subtitle">
+              {{ auto.marca }}
+              <img [src]="'assets/autos/' + auto.marca.toLowerCase() + '.png'" alt="{{ auto.marca }}" class="logo-marca" />
+            </ion-card-subtitle>
+            <ion-card-title>{{ auto.modelo }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ auto.tipo }}</p>
+            <p>Año: {{ auto.anio }}</p>
+            <h3>{{ auto.precio | currency: 'MXN' }}</h3>
+            <ion-button fill="clear" size="small" class="btn-fav">
+              <ion-icon name="heart-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

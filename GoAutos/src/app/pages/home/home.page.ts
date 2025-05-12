@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { GeneralService } from '../../services/general.service';
+import { FiltroPopoverComponent } from '../../components/filtro-popover/filtro-popover.component';
+import { PopoverController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -10,84 +13,55 @@ import { GeneralService } from '../../services/general.service';
 })
 export class HomePage implements OnInit {
 
+  textoCompleto: string = 'Compra y acelera';
+  textoAnimado: string = '';
+  textoIndex = 0;
+  totalTextos = 3;
   esDispositivoMovil: boolean = false;
+  formNotificacion: FormGroup;
 
-  filtros: string[] = ['Color', '$', 'Año', 'Marca'];
-
-  autos = [
-    {
-      marca: 'Chevrolet',
-      modelo: 'Nova GT Sport',
-      anio: 2022,
-      tipo: 'Hatchback Deportivo',
-      precio: 95899,
-      imagen: 'assets/autos/rojo.webp',
-    },
-    {
-      marca: 'BMW',
-      modelo: 'Nova GT Sport',
-      anio: 2019,
-      tipo: 'Hatchback Deportivo',
-      precio: 95899,
-      imagen: 'assets/autos/blanco.webp',
-    },
-    {
-      marca: 'Audi',
-      modelo: 'Nova GT Sport',
-      anio: 2018,
-      tipo: 'Hatchback Deportivo',
-      precio: 95899,
-      imagen: 'assets/autos/azul.webp',
-    },
-    {
-      marca: 'Mazda',
-      modelo: 'Nova GT Sport',
-      anio: 2020,
-      tipo: 'Hatchback Deportivo',
-      precio: 95899,
-      imagen: 'assets/autos/verde.webp',
-    },
-    {
-      marca: 'Tesla',
-      modelo: 'Nova GT Sport',
-      anio: 2021,
-      tipo: 'Hatchback Deportivo',
-      precio: 95899,
-      imagen: 'assets/autos/blanco.webp',
-    },
-    {
-      marca: 'Suzuki',
-      modelo: 'Nova GT Sport',
-      anio: 2024,
-      tipo: 'Hatchback Deportivo',
-      precio: 95899,
-      imagen: 'assets/autos/verde.webp',
-    },
-  ];
-
-  showSplash: boolean = true;
 
   constructor(
     private menu: MenuController,
-    private generalService: GeneralService
-  ) {}
-
-  ngOnInit() {
-    this.mostrarBienvenida();
-    this.generalService.dispositivo$.subscribe((tipo) => {
-      this.esDispositivoMovil = tipo === 'telefono' || tipo === 'tablet';
+    private generalService: GeneralService,
+    private popoverCtrl: PopoverController,
+    private fb: FormBuilder
+  ) {
+    this.formNotificacion = this.fb.group({
+      nombre: ['', Validators.required],
+      correo: ['', [Validators.required, Validators.email]],
     });
   }
 
-  mostrarBienvenida() {
-    const splashMostrado = localStorage.getItem('splashMostrado');
-    if (splashMostrado) {
-      this.showSplash = false;
-    } else {
-      setTimeout(() => {
-        this.showSplash = false;
-        localStorage.setItem('splashMostrado', 'true');
-      }, 5000);
+  ngOnInit() {
+    this.escribirTexto();
+    this.generalService.dispositivo$.subscribe((tipo) => {
+      this.esDispositivoMovil = tipo === 'telefono' || tipo === 'tablet';
+    });
+
+    setInterval(() => {
+      this.textoIndex = (this.textoIndex + 1) % this.totalTextos;
+    }, 10000);
+  }
+
+  enviarNotificacion() {
+    if (this.formNotificacion.valid) {
+      const datos = this.formNotificacion.value;
+      console.log('Datos del formulario:', datos);
+      alert('¡Gracias! Te notificaremos pronto 🚀');
+      this.formNotificacion.reset();
     }
   }
+
+  escribirTexto() {
+    let index = 0;
+    const intervalo = setInterval(() => {
+      this.textoAnimado += this.textoCompleto[index];
+      index++;
+      if (index === this.textoCompleto.length) {
+        clearInterval(intervalo);
+      }
+    }, 150);
+  }
+
 }
