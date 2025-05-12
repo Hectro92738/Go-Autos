@@ -4,6 +4,10 @@ import { GeneralService } from '../../services/general.service';
 import { FiltroPopoverComponent } from '../../components/filtro-popover/filtro-popover.component';
 import { PopoverController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { environment } from '../../../environments/environment';
+import { AlertController } from '@ionic/angular';
+
+
 
 @Component({
   selector: 'app-home',
@@ -24,7 +28,8 @@ export class HomePage implements OnInit {
     private menu: MenuController,
     private generalService: GeneralService,
     private popoverCtrl: PopoverController,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private alertCtrl: AlertController
   ) {
     this.formNotificacion = this.fb.group({
       nombre: ['', Validators.required],
@@ -43,26 +48,44 @@ export class HomePage implements OnInit {
     }, 10000);
   }
 
+  async presentAlertaConfirmacion() {
+  const alert = await this.alertCtrl.create({
+    header: '¡Gracias!',
+    message: 'Tu mensaje fue recibido. Te notificaremos pronto',
+    buttons: [],
+    backdropDismiss: false,
+  });
+
+  await alert.present();
+
+  setTimeout(() => {
+    alert.dismiss();
+  }, 3000);
+}
+
+
   enviarNotificacion() {
-    if (this.formNotificacion.valid) {
-      const datos = this.formNotificacion.value;
-      console.log('Datos del formulario:', datos);
-      alert('¡Gracias! Te notificaremos pronto 🚀');
-      this.formNotificacion.reset();
-    }
-
-    if (this.formNotificacion.invalid) {
-      this.formNotificacion.markAllAsTouched();
-      return;
-    }
-
-    const datos = this.formNotificacion.value;
-    console.log('Datos del formulario:', datos);
-    alert('¡Gracias! Te notificaremos pronto 🚀');
-    this.formNotificacion.reset();
+  if (this.formNotificacion.invalid) {
+    this.formNotificacion.markAllAsTouched();
+    return;
   }
 
-  escribirTexto() {
+  this.presentAlertaConfirmacion();
+
+
+  const datos = this.formNotificacion.value;
+  this.generalService.enviarCorreoContacto(datos.nombre, datos.correo).subscribe({
+    next: () => {
+      this.formNotificacion.reset();
+      console.log('Correo enviado correctamente');
+    },
+    error: (error) => {
+      console.error('Error al enviar notificación:', error);
+    },
+  });
+}
+
+ escribirTexto() {
     let index = 0;
     const intervalo = setInterval(() => {
       this.textoAnimado += this.textoCompleto[index];

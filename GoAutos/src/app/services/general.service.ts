@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Platform } from '@ionic/angular';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class GeneralService {
   private dispositivoSubject = new BehaviorSubject<'telefono' | 'tablet' | 'computadora'>('computadora');
   public dispositivo$ = this.dispositivoSubject.asObservable();
 
-  constructor(private platform: Platform) {
+  constructor(private platform: Platform, private http: HttpClient) {
     this.detectarDispositivo();
     this.detectarDispositivoSinze();
   }
@@ -32,5 +34,12 @@ export class GeneralService {
   detectarDispositivo() {
     const isMobile = this.platform.is('ios') || this.platform.is('android');
     this.esMovil.next(isMobile);
+  }
+
+  enviarCorreoContacto(nombre: string, correo: string) {
+    return this.http.post(`${environment.api_key}/api/contacto`, {
+      nombre,
+      correo
+    });
   }
 }

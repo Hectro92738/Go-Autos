@@ -1,35 +1,35 @@
 // services/emailService.js
-require('dotenv').config();
-const nodemailer = require('nodemailer');
+require("dotenv").config();
+const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: parseInt(process.env.SMTP_PORT),
-  secure: true, 
+  secure: true,
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS,
   },
 });
 
-async function enviarCorreoContacto(nombre, correo, mensaje) {
+async function enviarCorreoContacto(nombre, correo) {
   try {
     await transporter.sendMail({
-      from: `"Formulario Web" <${process.env.SMTP_USER}>`, 
-      to: process.env.TO_EMAIL, 
-      replyTo: correo, 
+      from: `"Formulario Web" <${process.env.SMTP_USER}>`,
+      to: process.env.TO_EMAIL,
+      replyTo: correo,
       subject: "Nuevo mensaje de contacto",
       html: `
-        <h3>Nuevo mensaje desde el formulario de contacto</h3>
-        <p><strong>Nombre:</strong> ${nombre}</p>
-        <p><strong>Correo:</strong> ${correo}</p>
-        <p><strong>Mensaje:</strong><br>${mensaje}</p>
-      `,
+    <h3>Nuevo mensaje desde el formulario de contacto</h3>
+    <p><strong>Nombre:</strong> ${nombre}</p>
+    <p><strong>Correo:</strong> ${correo}</p>
+    <p><strong>Mensaje:</strong><br>Hola, quiero utilizar su app.</p>
+  `,
     });
 
     await transporter.sendMail({
-      from: `"GoAutos" <${process.env.SMTP_USER}>`, 
-      to: correo, 
+      from: `"GoAutos" <${process.env.SMTP_USER}>`,
+      to: correo,
       subject: "¡Gracias por contactarnos!",
       html: `
         <h3>¡Gracias por contactarnos!</h3>
@@ -48,9 +48,9 @@ async function enviarCorreoContacto(nombre, correo, mensaje) {
 
 transporter.verify((err, success) => {
   if (err) {
-    console.error('Error al verificar conexión SMTP:', err.message);
+    console.error("Error al verificar conexión SMTP:", err.message);
   } else {
-    console.log('Conexión SMTP verificada con éxito');
+    console.log("Conexión SMTP verificada con éxito");
   }
 });
 
