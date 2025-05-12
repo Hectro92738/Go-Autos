@@ -238,8 +238,8 @@ $value in (primero: #ff3c3c,
   tersero: #ffc13c,
 ) {
   .card-hatchback-#{$color} {
-    width: 340px;
-    height: 320px;
+    width: 440px;
+    height: 360px;
     background-color: $value;
     border-radius: 20px;
     padding: 1rem;
@@ -250,6 +250,11 @@ $value in (primero: #ff3c3c,
     justify-content: flex-start;
     color: #ffffff;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.647);
+
+    @media (max-width: 768px) {
+      width: 300px;
+      height: 200px;
+    }
   }
 }
 
@@ -272,6 +277,9 @@ $value in (primero: #ff3c3c,
     color: rgba(255, 255, 255, 0.506);
     line-height: 1;
     margin-top: 1.5rem;
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
   }
 }
 
@@ -292,6 +300,11 @@ $value in (primero: url('/assets/autos/blanco.webp'),
     background-repeat: no-repeat;
     z-index: 1;
     transition: transform 0.4s ease-out;
+
+    @media (max-width: 768px) {
+    width: 50%;
+    height: 55%;
+    }
   }
 }
 
@@ -317,7 +330,7 @@ $value in (primero: url('/assets/autos/blanco.webp'),
   padding: 2rem 1rem;
   text-align: center;
   height: 300px;
-  margin-top: 3rem;
+  margin-top: 0rem;
 
   .mensajes-contenido {
     max-width: 500px;
@@ -325,7 +338,6 @@ $value in (primero: url('/assets/autos/blanco.webp'),
   }
 
   .descripcion-2 {
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
     font-weight: 800;
     color: #ffffff;
@@ -409,6 +421,87 @@ $value in (primero: url('/assets/autos/blanco.webp'),
 }
 
 
+// #### ----------------------- QUINTA SECCIÓN MAPA -----------------------  #### //
+
+
+.seccion-mapa {
+  padding: 2rem;
+  background-color: #f7f7f7;
+
+  .mapa-layout {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .datos-empresa {
+    flex: 1;
+    max-width: 400px;
+    font-size: 1rem;
+
+    .mapa-titulo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin: 0.5rem 0;
+    }
+  }
+
+  .mapa-contenedor {
+    flex: 1;
+    min-width: 300px;
+
+    iframe {
+      width: 100%;
+      height: 300px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.btn-store-mac{
+  width:17%;
+  @media (max-width: 768px) {
+    width:37%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .contenedor-blob {
@@ -461,4 +554,94 @@ $value in (primero: url('/assets/autos/blanco.webp'),
   background-color: #ff1a1a;
   bottom: 15%;
   right: 130px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// #### ----------------------- SEXTA SECCIÓN -----------------------  #### //
+.seccion-app-mensaje {
+  background: #00000000;
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 2rem;
+
+  .contenedor-app-mensaje {
+    max-width: 700px;
+    width: 100%;
+
+    .titulo-app {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.4;
+      color: #ffffff;
+
+      span {
+        color: red;
+      }
+    }
+
+    .Proximamente {
+      background-color: #ff1a1a;
+      color: #ffffff;
+      padding: 13px;
+    }
+
+
+    .botones-app {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+
+      img {
+        height: 50px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .titulo-app {
+      font-size: 1.5rem;
+    }
+
+    .botones-app img {
+      height: 45px;
+    }
+  }
 }
