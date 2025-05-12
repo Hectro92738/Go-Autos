@@ -1,0 +1,7 @@
+
+<ion-list>
+  <ion-item *ngFor="let opcion of opciones" (click)="seleccionar(opcion)">
+    {{ opcion.label }}
+    <img *ngIf="tipo == 'marca'" [src]="'assets/autos/' + opcion.label.toLowerCase() + '.png'" alt="{{ opcion.label }}" class="logo-marca">
+  </ion-item>
+</ion-list>

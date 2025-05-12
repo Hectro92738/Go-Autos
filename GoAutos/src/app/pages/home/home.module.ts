@@ -10,6 +10,8 @@ import { BienvenidaComponent } from '../../components/bienvenida/bienvenida.comp
 // importamos la navbar
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { HomePage } from './home.page';
 
 @NgModule({
@@ -20,6 +22,7 @@ import { HomePage } from './home.page';
     HomePageRoutingModule,
     BienvenidaComponent,
     NavbarComponent,
+    ReactiveFormsModule
   ],
   declarations: [HomePage],
 })

@@ -1,4 +1,26 @@
 <app-navbar></app-navbar>
+
 <ion-content [fullscreen]="true">
- 
+  <ion-grid class="ion-padding" *ngIf="autosFavoritos.length > 0">
+    <ion-row>
+      <ion-col size="12" size-sm="6" size-md="4" *ngFor="let auto of autosFavoritos">
+        <!-- Aquí iría la tarjeta del auto favorito -->
+        <ion-card>
+          <ion-img [src]="auto.imagen" [alt]="auto.modelo"></ion-img>
+          <ion-card-header>
+            <ion-card-title>{{ auto.modelo }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            {{ auto.marca }} - {{ auto.anio }} - {{ auto.tipo }}
+            <h3>{{ auto.precio | currency:'MXN' }}</h3>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="mensaje-vacio" *ngIf="autosFavoritos.length === 0">
+    <ion-icon name="heart-dislike" size="large" color="medium"></ion-icon>
+    <p>No tienes autos en tus favoritos todavía.</p>
+  </div>
 </ion-content>

@@ -4,9 +4,15 @@
 :root {
   --ion-color-dark:    #000000;
   --ion-color-danger:  #ff0000;
+  --ion-color-gris:    #ffffff;
 
+  --ion-font-family: 'DM Sans', sans-serif;
   --ion-safe-area-top: env(safe-area-inset-top);
   --ion-safe-area-bottom: env(safe-area-inset-bottom);
+}
+
+ion-content {
+  --background: var(--ion-color-gris);
 }
 
 ion-header {

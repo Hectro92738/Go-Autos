@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 8px;
+  height: 70px;
 
   ion-buttons {
     display: flex;
@@ -11,12 +11,13 @@
   }
 
   .logo {
-    width: 6%;
+    width: 10%;
+    margin-left: 7px
   }
 
   .search-bar {
     flex: 1;
-    margin: 0 10px;
+    margin: 0 5px;
     display: flex;
     align-items: center;
   }
@@ -31,18 +32,17 @@
     // height: 40px;
   }
 
-  ion-icon {
-    font-size: 24px;
+  ion-button {
+    font-size: 10px;
     color: white;
-    margin-right: 2px;
-  }
-
-  ion-button:hover {
-    border-bottom: #ff0000 solid 2px;
-    // color: #ff0000;
-    // ion-icon {
-    //   color: #ff0000;
-    // }
+    &:hover{
+      border-bottom: #ff0000 solid 2px;
+    }
+    ion-icon {
+      font-size: 25px;
+      color: white;
+      margin-right: 2px;
+    }
   }
 }
 
@@ -56,6 +56,7 @@
   .custom-toolbar {
     flex-direction: column;
     align-items: stretch;
+    height: 60px;
 
     .custom-search {
       width: 100%;

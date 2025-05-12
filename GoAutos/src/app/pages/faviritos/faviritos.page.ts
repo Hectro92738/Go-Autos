@@ -8,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FaviritosPage implements OnInit {
 
+  autosFavoritos: any[] = [];
+
+
   constructor() { }
 
   ngOnInit() {

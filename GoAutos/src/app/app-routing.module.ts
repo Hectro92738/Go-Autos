@@ -23,6 +23,14 @@ const routes: Routes = [
     path: 'mensajes',
     loadChildren: () => import('./pages/mensajes/mensajes.module').then( m => m.MensajesPageModule)
   },
+  {
+    path: 'nuevos',
+    loadChildren: () => import('./pages/nuevos/nuevos.module').then( m => m.NuevosPageModule)
+  },
+  {
+    path: 'seminuevos',
+    loadChildren: () => import('./pages/seminuevos/seminuevos.module').then( m => m.SeminuevosPageModule)
+  },
 ];
 
 @NgModule({
