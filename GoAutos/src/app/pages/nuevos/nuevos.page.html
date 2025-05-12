@@ -13,25 +13,27 @@
       </ion-col>
     </ion-row>
 
-    <ion-col size="6" size-md="4" size-lg="3" *ngFor="let auto of autos">
-      <ion-card class="auto-card">
-        <div class="imagen-container">  
-          <img [src]="auto.imagen" [alt]="auto.modelo" loading="lazy" />
+    <ion-row class="catalogo-autos">
+      <ion-col size="6" size-md="4" size-lg="3" *ngFor="let auto of autos">
+        <div class="auto-card">
+          <div class="imagen-container">
+            <img [src]="auto.imagen" [alt]="auto.modelo" loading="lazy" />
+          </div>
+          <div class="contenido-auto">
+            <p class="marca-modelo">
+              <strong>{{ auto.marca }}</strong> • {{ auto.modelo }}
+            </p>
+            <h2 class="precio">
+              {{ auto.precio | currency: 'MXN':'symbol':'1.0-0' }}
+            </h2>
+            <p class="mensualidad">
+              Desde {{ calcularMensualidad(auto.precio) | currency: 'MXN':'symbol':'1.0-0' }} <span>/mes*</span>
+            </p>
+          </div>
         </div>
-        <ion-card-content class="contenido-auto">
-          <p class="marca-modelo">
-            <strong>{{ auto.marca }}</strong> • {{ auto.modelo }}
-          </p>
-          <h2 class="precio">
-            {{ auto.precio | currency: 'MXN':'symbol':'1.0-0' }}
-          </h2>
-          <p class="mensualidad">
-            Desde {{ calcularMensualidad(auto.precio) | currency: 'MXN':'symbol':'1.0-0' }} <span>/mes*</span>
-          </p>
-        </ion-card-content>
-      </ion-card>
+      </ion-col>
+    </ion-row>
 
-    </ion-col>
 
 
 
