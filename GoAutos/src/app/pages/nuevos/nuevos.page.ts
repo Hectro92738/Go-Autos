@@ -115,4 +115,9 @@ export class NuevosPage implements OnInit {
       // Aquí puedes aplicar el filtro real
     }
   }
+
+  calcularMensualidad(precio: number): number {
+    return precio / 74; // aproximado a 6 años con intereses simulados
+  }
+
 }
