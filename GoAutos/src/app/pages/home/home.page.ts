@@ -85,7 +85,7 @@ export class HomePage implements OnInit {
   });
 }
 
- escribirTexto() {
+  escribirTexto() {
     let index = 0;
     const intervalo = setInterval(() => {
       this.textoAnimado += this.textoCompleto[index];
@@ -95,4 +95,5 @@ export class HomePage implements OnInit {
       }
     }, 150);
   }
+
 }

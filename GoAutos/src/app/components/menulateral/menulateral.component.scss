@@ -1,0 +1,44 @@
+ion-menu[menuId="menuLateral"] {
+  --width: 280px;
+  @media (max-width: 768px) {
+    --width: 200px;
+  }
+
+  ion-header {
+    ion-toolbar {
+      height: 50px;
+      --background: #1e1e1e;
+      --color: #fff;
+
+      ion-title {
+        font-weight: bold;
+      }
+
+      ion-button {
+        color: #ffffff;
+      }
+    }
+  }
+
+  ion-content {
+    padding: 0px;
+    margin: 0px;
+
+    ion-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+
+      ion-item {
+        --border-style: none;
+        --inner-border-width: 0;
+        font-size: 13px;
+        transition: background 0.2s ease-in-out;
+      }
+
+      ion-icon{
+        margin-right: 4px;
+      }
+    }
+  }
+}
