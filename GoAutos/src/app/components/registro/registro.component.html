@@ -1,3 +1,113 @@
-<p>
-  registro works!
-</p>
+<div class="overlay">
+  <img src="assets/icon/goautos.webp" loading="lazy" alt="Go Autos" class="logo-registro" />
+  <h1 class="titulo">Registro</h1>
+
+  <form [formGroup]="registroForm" class="login-form" (ngSubmit)="EnvioRegistro()">
+
+    <!-- Usuario -->
+    <ion-item lines="none" class="input-wrapper">
+      <ion-input formControlName="usuario" type="text" placeholder="Usuario" required
+        (ionInput)="transformarMayuscula('usuario')">
+      </ion-input>
+    </ion-item>
+    <ion-note *ngIf="registroForm.get('usuario')?.invalid && registroForm.get('usuario')?.touched">
+      <ng-container *ngIf="registroForm.get('usuario')?.errors?.['required']">
+        El usuario es obligatorio.
+      </ng-container>
+      <ng-container *ngIf="registroForm.get('usuario')?.errors?.['maxlength']">
+        Máximo 20 caracteres.
+      </ng-container>
+      <ng-container *ngIf="registroForm.get('usuario')?.errors?.['pattern']">
+        Solo letras mayúsculas.
+      </ng-container>
+    </ion-note>
+
+    <!-- Apellidos -->
+    <ion-item lines="none" class="input-wrapper">
+      <ion-input formControlName="apellidos" type="text" placeholder="Apellido(s)" required
+        (ionInput)="transformarMayuscula('apellidos')">
+      </ion-input>
+    </ion-item>
+    <ion-note *ngIf="registroForm.get('apellidos')?.invalid && registroForm.get('apellidos')?.touched">
+      <ng-container *ngIf="registroForm.get('apellidos')?.errors?.['required']">
+        El apellido es obligatorio.
+      </ng-container>
+      <ng-container *ngIf="registroForm.get('apellidos')?.errors?.['maxlength']">
+        Máximo 40 caracteres.
+      </ng-container>
+      <ng-container *ngIf="registroForm.get('apellidos')?.errors?.['pattern']">
+        Solo letras mayúsculas.
+      </ng-container>
+    </ion-note>
+
+    <!-- Email -->
+    <ion-item lines="none" class="input-wrapper">
+      <ion-input formControlName="email" type="email" placeholder="Gmail" required></ion-input>
+    </ion-item>
+    <ion-note *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched">
+      <ng-container *ngIf="registroForm.get('email')?.errors?.['required']">
+        El correo es obligatorio.
+      </ng-container>
+      <ng-container *ngIf="registroForm.get('email')?.errors?.['email']">
+        Correo no válido.
+      </ng-container>
+      <ng-container *ngIf="registroForm.get('email')?.errors?.['maxlength']">
+        Máximo 30 caracteres.
+      </ng-container>
+    </ion-note>
+
+    <!-- Teléfono -->
+    <div class="telefono-input-wrapper">
+      <ion-item lines="none" class="lada-box" (click)="abrirModalLadas()">
+        <img [src]="'https://flagcdn.com/w40/' + ladaSeleccionada.bandera + '.png'" class="flag-img" />
+        <p>{{ ladaSeleccionada.codigo }}</p>
+      </ion-item>
+      <ion-item lines="none" class="telefono-input">
+        <ion-input formControlName="telefono" type="tel" inputmode="numeric" maxlength="10" placeholder="Teléfono"
+          required></ion-input>
+      </ion-item>
+    </div>
+    <ion-note class="ion-note" *ngIf="registroForm.get('telefono')?.invalid && registroForm.get('telefono')?.touched">
+      <ng-container *ngIf="registroForm.get('telefono')?.errors?.['required']">
+        El número es obligatorio.
+      </ng-container>
+      <ng-container *ngIf="registroForm.get('telefono')?.errors?.['pattern']">
+        Debe contener exactamente 10 dígitos.
+      </ng-container>
+    </ion-note>
+
+    <button type="submit" class="btn-login" [disabled]="registroForm.invalid">
+      Iniciar sesión
+    </button>
+    <button type="button" class="btn-google">
+      <img src="assets/img/google.png" loading="lazy" alt="Google Login" />
+    </button>
+  </form>
+
+</div>
+
+
+<ion-modal [isOpen]="mostrarModal" (didDismiss)="cerrarModal()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-title>Seleccionar país</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item button *ngFor="let pais of paises" (click)="seleccionarLada(pais)">
+          <!-- <ion-avatar slot="start"> -->
+          <img [src]="pais.banderaUrl" />
+          <!-- </ion-avatar> -->
+          <ion-label style="margin-left: 4px;">
+            {{ pais.nombre }} ({{ pais.codigo }})
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -5,14 +5,13 @@ import { GeneralService } from '../../services/general.service';
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
-  standalone: false
+  standalone: false,
 })
 export class InicioPage implements OnInit {
   esDispositivoMovil: boolean = false;
   showSplash: boolean = true;
-  constructor(
-    private generalService: GeneralService
-  ) { }
+  MostrarLogin: boolean = true;
+  constructor(private generalService: GeneralService) {}
 
   async ngOnInit() {
     setTimeout(() => {
@@ -22,5 +21,9 @@ export class InicioPage implements OnInit {
     this.generalService.dispositivo$.subscribe((tipo) => {
       this.esDispositivoMovil = tipo === 'telefono' || tipo === 'tablet';
     });
+  }
+
+  RegistroLogin() {
+    this.MostrarLogin = !this.MostrarLogin;
   }
 }

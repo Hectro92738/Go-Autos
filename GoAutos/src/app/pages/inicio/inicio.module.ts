@@ -5,16 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { InicioPageRoutingModule } from './inicio-routing.module';
-// importamos el componente de splash
-import { BienvenidaComponent } from '../../components/bienvenida/bienvenida.component';
-// importamos el componente de login
-import { LoginComponent } from '../../components/login/login.component';
 // importamos la navbar
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-// importamos
-import { TabsComponent } from '../../components/tabs/tabs.component';
-// importamos
-import { MenulateralComponent } from '../../components/menulateral/menulateral.component';
+// importamos el componente de login
+import { LoginComponent } from '../../components/login/login.component';
+// importamos el componente de registro
+import { RegistroComponent } from '../../components/registro/registro.component';
 
 import { InicioPage } from './inicio.page';
 
@@ -24,11 +20,9 @@ import { InicioPage } from './inicio.page';
     FormsModule,
     IonicModule,
     InicioPageRoutingModule,
-    BienvenidaComponent,
     LoginComponent,
     NavbarComponent,
-    TabsComponent,
-    MenulateralComponent,
+    RegistroComponent
   ],
   declarations: [InicioPage]
 })

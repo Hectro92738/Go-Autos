@@ -341,13 +341,13 @@ $value in (primero: url('/assets/autos/blanco.webp'),
     font-size: 25px;
     font-weight: 800;
     color: #ffffff;
-    line-height: 1.5; //separación entre lineas vetialmente
     margin-top: 3rem;
     opacity: 0;
     animation: fadeInUp 1.2s ease-out forwards;
     animation-delay: 0.8s;
     letter-spacing: 0.00em; // Espaciado entre letras
     word-spacing: 0.3em; // Espaciado entre palabras
+    line-height: 1.5; //separación entre lineas vetialmente
 
     span {
       background-color: var(--ion-color-danger);
@@ -360,7 +360,6 @@ $value in (primero: url('/assets/autos/blanco.webp'),
       font-size: 20px;
     }
   }
-
 }
 
 

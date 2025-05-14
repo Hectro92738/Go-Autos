@@ -1,4 +1,15 @@
 <app-navbar></app-navbar>
 <ion-content [fullscreen]="false" class="home-bg">
-  <app-login></app-login>
+  <div class="container_vidrio">
+    <app-login *ngIf="MostrarLogin"></app-login>
+    <app-registro *ngIf="!MostrarLogin"></app-registro>
+    <p class="link-registro">
+      <span *ngIf="MostrarLogin">¿No tienes una cuenta? </span>
+      <span *ngIf="!MostrarLogin">¿Ya tienes cuenta? </span>
+      <strong (click)="RegistroLogin()">
+        <span *ngIf="MostrarLogin">Registrarme</span>
+        <span *ngIf="!MostrarLogin">Iniciar Sesión</span>
+      </strong>
+    </p>
+  </div>
 </ion-content>

@@ -1,0 +1,207 @@
+@keyframes fadeBackground {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes fadeOverlay {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleLogo {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.overlay {
+  z-index: 10;
+  position: relative;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  animation: fadeOverlay 0.2s ease-out 0.2s forwards;
+  opacity: 0;
+  transform: translateY(30px);
+
+  .logo-registro {
+    width: 70px;
+    height: auto;
+    z-index: 11;
+    animation: scaleLogo 0.2s ease-out 0.5s forwards;
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  .titulo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e6e6e6;
+  }
+
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+
+  .input-wrapper {
+    width: 100%;
+    max-width: 280px;
+    --background: rgba(167, 167, 167, 0.14) !important;
+    border: 0.5px solid rgba(189, 189, 189, 0.369);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    color: white;
+
+    ion-input {
+      color: white;
+      padding-left: 10px;
+    }
+
+    .eye-icon {
+      color: white;
+      font-size: 20px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+  }
+
+  // El imput personalizado de teléfono
+  .telefono-input-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 280px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(167, 167, 167, 0.14) !important;
+    border: 0.5px solid rgba(90, 90, 90, 0.369);
+
+    ion-item.lada-box {
+      --background: transparent !important;
+      background-color: rgba(255, 255, 255, 0.15) !important;
+      padding: 0px;
+      font-weight: bold;
+      border-right: 1px solid rgba(67, 67, 67, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      min-width: 70px;
+      max-width: 90px;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      cursor: pointer;
+
+      p {
+        margin: 0;
+        color: white;
+        font-size: 10px;
+      }
+    }
+
+    .flag-img {
+      width: 20px;
+      height: 15px;
+      object-fit: cover;
+      margin-right: 8px;
+    }
+
+    .opcion-bandera {
+      display: flex;
+      align-items: center;
+    }
+
+    .telefono-input {
+      flex: 1;
+      --background: transparent;
+      --padding-start: 10px;
+      color: white;
+
+      ion-input {
+        color: white;
+        padding-left: 0;
+      }
+    }
+  }
+
+  .ion-note{
+    margin-top: 2px !important;
+  }
+
+  ion-note {
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: -15px;
+    margin-bottom: 10px;
+    --color: #ffffff;
+    --backgroundk: rgba(199, 0, 0, 0.129);
+    text-shadow:
+    -0.5px -0.5px 0 rgba(255, 0, 0, 0.129),
+     0.5px -0.5px 0 rgba(255, 0, 0, 0.129),
+    -0.5px  0.5px 0 rgba(255, 0, 0, 0.129),
+     0.5px  0.5px 0 rgba(255, 0, 0, 0.129);
+
+    letter-spacing: 0.08em; // Espaciado entre letras
+    word-spacing: 0.3em; // Espaciado entre palabras
+    // line-height: 1.5; //separación entre lineas vetialmente
+  }
+
+
+
+  .btn-login {
+    width: 220px;
+    background: var(--ion-color-danger);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    padding: 22px;
+    border-radius: 30px;
+    margin-top: 10px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+    &:disabled {
+      background: rgba(255, 0, 0, 0.268);
+      cursor: not-allowed;
+    }
+  }
+
+  .btn-google {
+    width: 220px;
+    background: #ffffff;
+    border: none;
+    padding: 28px 28px 28px 48px;
+    border-radius: 30px;
+    margin-top: 10px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 45%;
+      width: 20px;
+      height: auto;
+      transform: translateY(-50%);
+    }
+  }
+}

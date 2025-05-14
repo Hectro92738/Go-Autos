@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_key: "http://localhost:3000",
+  api_key: "https://go-autos-back.vercel.app",
 };
 
 /*
