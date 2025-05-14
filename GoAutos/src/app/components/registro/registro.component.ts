@@ -42,7 +42,7 @@ export class RegistroComponent implements OnInit {
   async EnvioRegistro() {
     if (this.registroForm.valid) {
       const datos = {
-        usuario: this.registroForm.value.usuario,
+        nombre: this.registroForm.value.usuario,
         apellidos: this.registroForm.value.apellidos,
         email: this.registroForm.value.email,
         lada: this.ladaSeleccionada.codigo,

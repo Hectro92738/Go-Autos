@@ -12,7 +12,7 @@
     </ion-item>
     <ion-note *ngIf="registroForm.get('usuario')?.invalid && registroForm.get('usuario')?.touched">
       <ng-container *ngIf="registroForm.get('usuario')?.errors?.['required']">
-        El usuario es obligatorio.
+        El nombre es obligatorio.
       </ng-container>
       <ng-container *ngIf="registroForm.get('usuario')?.errors?.['maxlength']">
         Máximo 20 caracteres.

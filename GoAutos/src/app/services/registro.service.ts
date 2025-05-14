@@ -11,6 +11,6 @@ export class RegistroService {
   constructor(private http: HttpClient) {}
 
   registro(datos: any): Observable<any> {
-    return this.http.post(`${environment.api_key}/api/users/register`, datos);
+    return this.http.post(`${environment.api_key}/users/pre-register`, datos);
   }
 }
