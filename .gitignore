@@ -1,5 +1,6 @@
 # Ignorar toda la carpeta de Ionic
 /logo/
+/back/
 
 # Ignorar todos los node_modules en cualquier subcarpeta
 **/node_modules/
