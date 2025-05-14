@@ -24,9 +24,14 @@
         <ion-icon name="cog-outline"></ion-icon>
         Configuración
       </ion-item>
-      <ion-item (click)="redirecion('inicio')" button>
+      <ion-item *ngIf="!isLoggedIn" (click)="redirecion('inicio')" button>
         <ion-icon name="log-in-outline"></ion-icon>
         Iniciar sesión
+      </ion-item>
+
+      <ion-item *ngIf="isLoggedIn" (click)="logout()" button>
+        <ion-icon name="log-out-outline"></ion-icon>
+        Cerrar sesión
       </ion-item>
     </ion-list>
   </ion-content>

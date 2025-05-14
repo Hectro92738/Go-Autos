@@ -142,28 +142,42 @@
     }
   }
 
-  .ion-note{
+  .ion-note {
     margin-top: 2px !important;
   }
 
   ion-note {
     font-size: 12px;
-    font-weight: bold;
+    // font-weight: bold;
     margin-top: -15px;
     margin-bottom: 10px;
     --color: #ffffff;
     --backgroundk: rgba(199, 0, 0, 0.129);
+
     text-shadow:
-    -0.5px -0.5px 0 rgba(255, 0, 0, 0.129),
-     0.5px -0.5px 0 rgba(255, 0, 0, 0.129),
-    -0.5px  0.5px 0 rgba(255, 0, 0, 0.129),
-     0.5px  0.5px 0 rgba(255, 0, 0, 0.129);
+      -0.5px -0.5px 0 rgba(255, 0, 0, 0.129),
+      0.5px -0.5px 0 rgba(255, 0, 0, 0.129),
+      -0.5px 0.5px 0 rgba(255, 0, 0, 0.129),
+      0.5px 0.5px 0 rgba(255, 0, 0, 0.129);
 
     letter-spacing: 0.08em; // Espaciado entre letras
     word-spacing: 0.3em; // Espaciado entre palabras
     // line-height: 1.5; //separación entre lineas vetialmente
   }
 
+  .botones-acciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    flex-wrap: nowrap;
+
+    @media (max-width: 480px) {
+      flex-wrap: nowrap;
+    }
+  }
 
 
   .btn-login {
@@ -175,7 +189,7 @@
     border: none;
     padding: 22px;
     border-radius: 30px;
-    margin-top: 10px;
+    margin-top: 12px;
     font-size: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 
@@ -185,13 +199,37 @@
     }
   }
 
+  .btn-login-dos {
+    width: 150px;
+    background: var(--ion-color-danger);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    padding: 20px;
+    border-radius: 30px;
+    margin-top: 5px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+    &:disabled {
+      background: rgba(255, 0, 0, 0.268);
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 480px) {
+      width: 125px;
+      font-size: 13px;
+    }
+  }
+
   .btn-google {
     width: 220px;
     background: #ffffff;
     border: none;
     padding: 28px 28px 28px 48px;
     border-radius: 30px;
-    margin-top: 10px;
+    margin-top: 0px;
     position: relative;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 
@@ -203,5 +241,31 @@
       height: auto;
       transform: translateY(-50%);
     }
+  }
+}
+
+.checkbox-custom {
+  --background: transparent;
+  --ion-item-background: transparent;
+  --inner-border-width: 0;
+  padding-left: 0;
+  margin-left: 0;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px; // espacio entre el checkbox y el texto
+
+  ion-label {
+    color: white;
+    font-size: 10px;
+    margin: 0;
+  }
+
+  .check-rojo {
+    --checkbox-background: transparent;
+    --border-color: var(--ion-color-danger);
+    --checkmark-color: white;
+    --background-checked: var(--ion-color-danger);
   }
 }

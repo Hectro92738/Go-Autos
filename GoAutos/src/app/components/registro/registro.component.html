@@ -4,13 +4,15 @@
 
   <form [formGroup]="registroForm" class="login-form" (ngSubmit)="EnvioRegistro()">
 
+    <!-- <ion-span *ngIf="Seccionamostrar === 1"> -->
     <!-- Usuario -->
-    <ion-item lines="none" class="input-wrapper">
+    <ion-item lines="none" class="input-wrapper" *ngIf="Seccionamostrar === 1">
       <ion-input formControlName="usuario" type="text" placeholder="Usuario" required
         (ionInput)="transformarMayuscula('usuario')">
       </ion-input>
     </ion-item>
-    <ion-note *ngIf="registroForm.get('usuario')?.invalid && registroForm.get('usuario')?.touched">
+    <ion-note
+      *ngIf="Seccionamostrar === 1 && registroForm.get('usuario')?.invalid && registroForm.get('usuario')?.touched">
       <ng-container *ngIf="registroForm.get('usuario')?.errors?.['required']">
         El nombre es obligatorio.
       </ng-container>
@@ -23,12 +25,13 @@
     </ion-note>
 
     <!-- Apellidos -->
-    <ion-item lines="none" class="input-wrapper">
+    <ion-item lines="none" class="input-wrapper" *ngIf="Seccionamostrar === 1">
       <ion-input formControlName="apellidos" type="text" placeholder="Apellido(s)" required
         (ionInput)="transformarMayuscula('apellidos')">
       </ion-input>
     </ion-item>
-    <ion-note *ngIf="registroForm.get('apellidos')?.invalid && registroForm.get('apellidos')?.touched">
+    <ion-note
+      *ngIf="Seccionamostrar === 1 && registroForm.get('apellidos')?.invalid && registroForm.get('apellidos')?.touched">
       <ng-container *ngIf="registroForm.get('apellidos')?.errors?.['required']">
         El apellido es obligatorio.
       </ng-container>
@@ -41,10 +44,10 @@
     </ion-note>
 
     <!-- Email -->
-    <ion-item lines="none" class="input-wrapper">
+    <ion-item lines="none" class="input-wrapper" *ngIf="Seccionamostrar === 1">
       <ion-input formControlName="email" type="email" placeholder="Gmail" required></ion-input>
     </ion-item>
-    <ion-note *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched">
+    <ion-note *ngIf="Seccionamostrar === 1 && registroForm.get('email')?.invalid && registroForm.get('email')?.touched">
       <ng-container *ngIf="registroForm.get('email')?.errors?.['required']">
         El correo es obligatorio.
       </ng-container>
@@ -57,7 +60,7 @@
     </ion-note>
 
     <!-- Teléfono -->
-    <div class="telefono-input-wrapper">
+    <div class="telefono-input-wrapper" *ngIf="Seccionamostrar === 1">
       <ion-item lines="none" class="lada-box" (click)="abrirModalLadas()">
         <img [src]="'https://flagcdn.com/w40/' + ladaSeleccionada.bandera + '.png'" class="flag-img" />
         <p>{{ ladaSeleccionada.codigo }}</p>
@@ -76,10 +79,125 @@
       </ng-container>
     </ion-note>
 
-    <button type="submit" class="btn-login" [disabled]="registroForm.invalid">
-      Iniciar sesión
+
+    <button type="button" class="btn-login" [disabled]="
+        registroForm.get('usuario')?.invalid ||
+        registroForm.get('apellidos')?.invalid ||
+        registroForm.get('email')?.invalid ||
+        registroForm.get('telefono')?.invalid
+      " (click)="validarSeccion1()" *ngIf="Seccionamostrar === 1">
+      Siguiente
     </button>
-    <button type="button" class="btn-google">
+    <br *ngIf="Seccionamostrar === 1">
+
+
+    <!-- </ion-span> -->
+
+
+
+
+
+
+
+    <!-- <ion-span *ngIf="Seccionamostrar === 2"> -->
+    <!-- NumeroConfirm -->
+    <span *ngIf="Seccionamostrar === 2">
+      Te hemos enviado un código de verificación a tu correo electrónico.
+      Por favor, revísalo para continuar con el
+      registro.
+    </span>
+    <br *ngIf="Seccionamostrar === 2">
+    <ion-item *ngIf="Seccionamostrar === 2" lines="none" class="input-wrapper">
+      <ion-input formControlName="numeroConfirm" type="number" maxlength="6" placeholder="Código de verificación"
+        required (ionInput)="transformarMayuscula('numeroConfirm')">
+      </ion-input>
+    </ion-item>
+    <ion-note
+      *ngIf="Seccionamostrar === 2 && registroForm.get('numeroConfirm')?.invalid && registroForm.get('numeroConfirm')?.touched">
+      <ng-container *ngIf="registroForm.get('numeroConfirm')?.errors?.['required']">
+        El código es obligatirio.
+      </ng-container>
+      <ng-container *ngIf="registroForm.get('numeroConfirm')?.errors?.['maxlength']">
+        Máximo 6 número.
+      </ng-container>
+      <ng-container *ngIf="registroForm.get('numeroConfirm')?.errors?.['pattern']">
+        Máximo 6 número.
+      </ng-container>
+    </ion-note>
+
+    <div class="botones-acciones" *ngIf="Seccionamostrar === 2">
+      <button type="button" class="btn-login-dos" (click)="regresarASeccion1()">
+        ← regresar
+      </button>
+
+      <button type="button" class="btn-login-dos" [disabled]="registroForm.get('numeroConfirm')?.invalid"
+        (click)="validarSeccion2()">
+        siguiente →
+      </button>
+    </div>
+
+    <!-- </ion-span> -->
+
+
+
+    <!-- <span *ngIf="Seccionamostrar === 3"> -->
+    <span *ngIf="Seccionamostrar === 3">
+      Te hemos enviado un código de verificación a tu correo electrónico.
+      Por favor, revísalo para continuar con el
+      registro.
+    </span>
+    <br *ngIf="Seccionamostrar === 3">
+    <!-- Contraseña -->
+    <ion-item *ngIf="Seccionamostrar === 3" lines="none" class="input-wrapper">
+      <ion-input formControlName="contrasena" [type]="verPassword ? 'text' : 'password'" placeholder="Contraseña"
+        required>
+      </ion-input>
+    </ion-item>
+    <ion-note
+      *ngIf="Seccionamostrar === 3 && registroForm.get('contrasena')?.touched && registroForm.get('contrasena')?.invalid">
+      <ng-container *ngIf="registroForm.get('contrasena')?.errors?.['minlength']">
+        Mínimo 6 caracteres.
+      </ng-container>
+      <ng-container *ngIf="registroForm.get('contrasena')?.errors?.['mayuscula']">
+        Debe contener al menos una letra mayúscula.
+      </ng-container>
+      <ng-container *ngIf="registroForm.get('contrasena')?.errors?.['numero']">
+        Debe contener al menos un número.
+      </ng-container>
+      <ng-container *ngIf="registroForm.get('contrasena')?.errors?.['especial']">
+        Debe contener al menos un carácter especial.
+      </ng-container>
+    </ion-note>
+
+    <!-- Confirmar Contraseña -->
+    <ion-item *ngIf="Seccionamostrar === 3" lines="none" class="input-wrapper">
+      <ion-input formControlName="confirmarContrasena" [type]="verPassword ? 'text' : 'password'"
+        placeholder="Confirmar contraseña" required>
+      </ion-input>
+    </ion-item>
+    <ion-note
+      *ngIf="Seccionamostrar === 3 && registroForm.get('confirmarContrasena')?.touched && registroForm.get('confirmarContrasena')?.invalid">
+      <ng-container *ngIf="registroForm.get('confirmarContrasena')?.errors?.['required']">
+        La confirmación de la contraseña es obligatoria.
+      </ng-container>
+      <ng-container *ngIf="registroForm.get('confirmarContrasena')?.errors?.['noCoincide']">
+        Las contraseñas no coinciden.
+      </ng-container>
+    </ion-note>
+
+    <ion-item *ngIf="Seccionamostrar === 3" class="checkbox-custom" lines="none">
+      <ion-checkbox slot="start" (ionChange)="toggleVerPassword()" class="check-rojo"></ion-checkbox>
+      <ion-label>Mostrar contraseñas</ion-label>
+    </ion-item>
+
+    <button *ngIf="Seccionamostrar === 3" type="submit" class="btn-login" [disabled]="registroForm.invalid">
+      Reguistrarme
+    </button>
+    <br *ngIf="Seccionamostrar === 3">
+
+    <!-- </span> -->
+
+    <button *ngIf="Seccionamostrar === 1" type="button" class="btn-google">
       <img src="assets/img/google.png" loading="lazy" alt="Google Login" />
     </button>
   </form>

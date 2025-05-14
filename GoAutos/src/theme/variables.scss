@@ -2,9 +2,9 @@
 // http://ionicframework.com/docs/theming/
 
 :root {
-  --ion-color-dark:    #000000;
-  --ion-color-danger:  #ff0000;
-  --ion-color-gris:    #ffffff;
+  --ion-color-dark: #000000;
+  --ion-color-danger: #ff0000;
+  --ion-color-gris: #ffffff;
 
   --ion-font-family: 'DM Sans', sans-serif;
   --ion-safe-area-top: env(safe-area-inset-top);
@@ -24,6 +24,15 @@ ion-header {
     padding-top: constant(safe-area-inset-top);
   }
 }
+
+.spinner-rojo {
+  --spinner-color: var(--ion-color-danger); // usa el color rojo por defecto de Ionic
+}
+
+.spinner-rojo ion-spinner.crescent circle {
+  stroke: var(--ion-color-danger); // también puedes usar un color hexadecimal personalizado
+}
+
 
 // :host {
 //   display: block !important;

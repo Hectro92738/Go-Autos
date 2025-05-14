@@ -4,6 +4,8 @@ import { IonicModule } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { Router, NavigationStart } from '@angular/router';
+import { GeneralService } from '../../services/general.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menulateral',
@@ -14,16 +16,53 @@ import { Router, NavigationStart } from '@angular/router';
   schemas: [CUSTOM_ELEMENTS_SCHEMA], //esquema personalizado
 })
 export class MenulateralComponent implements OnInit {
-  constructor(private router: Router, private menuCtrl: MenuController) {}
+  public isLoggedIn: boolean = false;
 
-  ngOnInit() {}
+  constructor(
+    private router: Router,
+    private menuCtrl: MenuController,
+    public generalService: GeneralService,
+    private alertController: AlertController
+  ) {}
+
+  ngOnInit() {
+     this.generalService.tokenExistente$.subscribe((estado) => {
+      this.isLoggedIn = estado;
+    });
+  }
 
   async redirecion(url: string) {
-    this.cerrarMenu()
+    this.cerrarMenu();
     this.router.navigate([url]);
   }
 
   cerrarMenu() {
     this.menuCtrl.close('menuLateral');
+  }
+
+  async logout() {
+    const alert = await this.alertController.create({
+      header: '¿Deseas salir?',
+      message: '¿Estás seguro de que deseas salir de la aplicación?',
+      cssClass: 'alert-confirm',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'alert-cancel-button',
+        },
+        {
+          text: 'Sí, regresar',
+          handler: () => {
+            this.generalService.eliminarToken();
+            this.router.navigate(['/login']);
+          },
+          cssClass: 'alert-confirm-button',
+        },
+      ],
+    });
+
+    await alert.present();
   }
 }

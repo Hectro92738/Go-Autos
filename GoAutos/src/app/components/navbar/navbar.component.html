@@ -36,7 +36,7 @@
           <!-- <ion-icon name="chatbubble-outline"></ion-icon> -->
           Mensajes
         </ion-button>
-        <ion-button fill="clear" (click)="redirecion('inicio')">
+        <ion-button fill="clear" (click)="redirecion('inicio')" *ngIf="!isLoggedIn">
           Iniciar sesión
         </ion-button>
       </ng-container>

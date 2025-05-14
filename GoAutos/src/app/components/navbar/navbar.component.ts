@@ -19,11 +19,12 @@ import { GeneralService } from '../../services/general.service';
 export class NavbarComponent implements OnInit {
   esDispositivoMovil: boolean = false;
   estaEnHome: boolean = false;
+  public isLoggedIn: boolean = false;
 
   constructor(
     private menu: MenuController,
     private router: Router,
-    private generalService: GeneralService
+    public generalService: GeneralService
   ) {}
 
   ngOnInit() {
@@ -38,6 +39,11 @@ export class NavbarComponent implements OnInit {
       .subscribe((event: any) => {
         this.estaEnHome = event.urlAfterRedirects === '/home';
       });
+
+     this.generalService.tokenExistente$.subscribe((estado) => {
+      this.isLoggedIn = estado;
+    });
+
   }
 
   openMenu() {
