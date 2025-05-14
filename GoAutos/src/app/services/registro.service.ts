@@ -13,4 +13,8 @@ export class RegistroService {
   registro(datos: any): Observable<any> {
     return this.http.post(`${environment.api_key}/users/pre-register`, datos);
   }
+
+  login(datos: any): Observable<any> {
+    return this.http.post(`${environment.api_key}/users/login`, datos);
+  }
 }
