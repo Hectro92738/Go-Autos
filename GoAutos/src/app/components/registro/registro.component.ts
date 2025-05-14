@@ -7,7 +7,7 @@ import { GeneralService } from '../../services/general.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
-
+import { Router } from '@angular/router';
 import {
   AbstractControl,
   ValidatorFn,
@@ -44,7 +44,8 @@ export class RegistroComponent implements OnInit {
     private registroService: RegistroService,
     private alertController: AlertController,
     private generalService: GeneralService,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private router: Router,
   ) {}
 
   async ngOnInit() {
@@ -268,13 +269,21 @@ export class RegistroComponent implements OnInit {
       };
 
       this.registroService.registro(datos).subscribe({
-        next: async (respuesta) => {
+        next: async (res) => {
           await this.generalService.alert(
             '¡Bienvenido a Go Autos!',
             'Tu registro ha sido exitoso.'
           );
-          // th<is.registroForm.reset(); Ward
-          this.Seccionamostrar = 2;
+          if (res.token) {
+            this.generalService.guardarToken(res.token);
+            this.generalService.presentToast(
+              'Inicio de sesión exitoso',
+              'success'
+            );
+            this.router.navigate(['/nuevos']);
+          } else {
+            this.generalService.presentToast('Respuesta inválida del servidor');
+          }
         },
         error: async (error) => {
           console.error('Error en el registro:', error);

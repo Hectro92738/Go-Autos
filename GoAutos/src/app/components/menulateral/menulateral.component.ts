@@ -26,7 +26,7 @@ export class MenulateralComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-     this.generalService.tokenExistente$.subscribe((estado) => {
+    this.generalService.tokenExistente$.subscribe((estado) => {
       this.isLoggedIn = estado;
     });
   }
@@ -53,10 +53,15 @@ export class MenulateralComponent implements OnInit {
           cssClass: 'alert-cancel-button',
         },
         {
-          text: 'Sí, regresar',
+          text: 'Sí, salir',
           handler: () => {
             this.generalService.eliminarToken();
+            this.cerrarMenu();
             this.router.navigate(['/login']);
+            this.generalService.alert(
+              '¡Saliste de ti sesión!',
+              '¡Hasta pronto!',
+            );
           },
           cssClass: 'alert-confirm-button',
         },
