@@ -38,6 +38,8 @@ export class RegistroComponent implements OnInit {
   Seccionamostrar: number = 1;
   verPassword: boolean = false;
 
+  filtroPais: string = '';
+
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
@@ -45,7 +47,7 @@ export class RegistroComponent implements OnInit {
     private alertController: AlertController,
     private generalService: GeneralService,
     private loadingController: LoadingController,
-    private router: Router,
+    private router: Router
   ) {}
 
   async ngOnInit() {
@@ -71,7 +73,7 @@ export class RegistroComponent implements OnInit {
           [
             Validators.required,
             Validators.maxLength(40),
-            Validators.pattern(/^[A-Z ]+$/),
+            Validators.pattern(/^[A-ZÑÁÉÍÓÚÜ ]+$/i)
           ],
         ],
         email: [
@@ -259,6 +261,8 @@ export class RegistroComponent implements OnInit {
     });
 
     if (valido) {
+      // mostrar spinner
+      await this.generalService.loading('Verificando...');
       const datos = {
         nombre: this.registroForm.value.usuario,
         apellidos: this.registroForm.value.apellidos,
@@ -270,6 +274,8 @@ export class RegistroComponent implements OnInit {
 
       this.registroService.registro(datos).subscribe({
         next: async (res) => {
+          // Ocultar spinner
+          await this.generalService.loadingDismiss();
           await this.generalService.alert(
             '¡Bienvenido a Go Autos!',
             'Tu registro ha sido exitoso.'
@@ -280,12 +286,14 @@ export class RegistroComponent implements OnInit {
               'Inicio de sesión exitoso',
               'success'
             );
-            this.router.navigate(['/home']);
+            this.router.navigate(['/nuevos']);
           } else {
             this.generalService.presentToast('Respuesta inválida del servidor');
           }
         },
         error: async (error) => {
+          // Ocultar spinner
+          await this.generalService.loadingDismiss();
           console.error('Error en el registro:', error);
           let mensaje = 'Ocurrió un error. Intenta más tarde.';
           if (error.status === 400 && error.error?.mensaje) {
@@ -353,6 +361,7 @@ export class RegistroComponent implements OnInit {
     };
     this.mostrarModal = false;
   }
+
 }
 
 function validarPasswordFuerte(): ValidatorFn {
@@ -372,7 +381,7 @@ function validarPasswordFuerte(): ValidatorFn {
       errores.numero = true;
     }
 
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
+    if (!/[!@#$%^&*(),.?":{}|<>_]/.test(value)) {
       errores.especial = true;
     }
 

@@ -15,7 +15,7 @@ import { GeneralService } from '../../services/general.service';
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class TabsComponent  implements OnInit {
-
+  public isLoggedIn: boolean = false;
   esDispositivoMovil: boolean = false;
 
   constructor(
@@ -29,6 +29,11 @@ export class TabsComponent  implements OnInit {
     this.generalService.dispositivo$.subscribe(tipo => {
       this.esDispositivoMovil = (tipo === 'telefono' || tipo === 'tablet');
     });
+    // ---
+     this.generalService.tokenExistente$.subscribe((estado) => {
+      this.isLoggedIn = estado;
+    });
+
   }
   async redirecion(url: string) {
     this.router.navigate([url]);

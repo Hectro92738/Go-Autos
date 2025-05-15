@@ -1,10 +1,6 @@
 <app-navbar></app-navbar>
 <ion-content [fullscreen]="false" class="home-bg">
   <div class="container_vidrio">
-    <button (click)="RegistroLogin()" class="btn_regresar" *ngIf="!MostrarLogin">
-      <ion-icon name="arrow-back-outline"></ion-icon>
-      regresar
-    </button>
     <app-login *ngIf="MostrarLogin"></app-login>
     <app-registro *ngIf="!MostrarLogin"></app-registro>
     <p class="link-registro">

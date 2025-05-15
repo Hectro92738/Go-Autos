@@ -28,11 +28,11 @@
           <ion-icon name="add-outline"></ion-icon>
           Agregar
         </ion-button> -->
-        <ion-button fill="clear" (click)="redirecion('faviritos')">
+        <ion-button fill="clear" (click)="redirecion('faviritos')" *ngIf="isLoggedIn">
           <!-- <ion-icon name="heart-outline"></ion-icon> -->
           Favoritos
         </ion-button>
-        <ion-button fill="clear" (click)="redirecion('mensajes')">
+        <ion-button fill="clear" (click)="redirecion('mensajes')" *ngIf="isLoggedIn">
           <!-- <ion-icon name="chatbubble-outline"></ion-icon> -->
           Mensajes
         </ion-button>

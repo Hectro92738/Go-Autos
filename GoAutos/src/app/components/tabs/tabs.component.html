@@ -15,12 +15,12 @@
     <ion-label>Seminuevos</ion-label>
   </ion-tab-button>
 
-  <ion-tab-button (click)="redirecion('faviritos')">
+  <ion-tab-button (click)="redirecion('faviritos')" *ngIf="isLoggedIn">
     <ion-icon name="heart"></ion-icon>
     <ion-label>Favoritos</ion-label>
   </ion-tab-button>
 
-  <ion-tab-button  (click)="redirecion('mensajes')">
+  <ion-tab-button  (click)="redirecion('mensajes')" *ngIf="isLoggedIn">
     <ion-icon name="chatbubble-ellipses"></ion-icon>
     <ion-label>Mensajes</ion-label>
   </ion-tab-button>

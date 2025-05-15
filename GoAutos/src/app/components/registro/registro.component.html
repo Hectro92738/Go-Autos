@@ -108,8 +108,8 @@
     </span>
     <br *ngIf="Seccionamostrar === 2">
     <ion-item *ngIf="Seccionamostrar === 2" lines="none" class="input-wrapper">
-      <ion-input formControlName="numeroConfirm" type="number" maxlength="6" placeholder="Código de verificación"
-        required (ionInput)="transformarMayuscula('numeroConfirm')">
+      <ion-input formControlName="numeroConfirm" type="number" inputmode="numeric" maxlength="6"
+        placeholder="Código de verificación" required (ionInput)="transformarMayuscula('numeroConfirm')">
       </ion-input>
     </ion-item>
     <ion-note
@@ -163,7 +163,7 @@
       </ng-container>
       <ng-container *ngIf="registroForm.get('contrasena')?.errors?.['numero']">
         Debe contener al menos un número.
-      </ng-container>
+      </ng-container> 
       <ng-container *ngIf="registroForm.get('contrasena')?.errors?.['especial']">
         Debe contener al menos un carácter especial.
       </ng-container>
@@ -185,10 +185,12 @@
       </ng-container>
     </ion-note>
 
+    <!-- mostrar contraseñas  -->
     <ion-item *ngIf="Seccionamostrar === 3" class="checkbox-custom" lines="none">
       <ion-checkbox slot="start" (ionChange)="toggleVerPassword()" class="check-rojo"></ion-checkbox>
       <ion-label>Mostrar contraseñas</ion-label>
     </ion-item>
+
 
     <button *ngIf="Seccionamostrar === 3" type="submit" class="btn-login" [disabled]="registroForm.invalid">
       Reguistrarme

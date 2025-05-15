@@ -43,21 +43,30 @@ export class LoginComponent {
       return;
     }
 
+    // mostrar spinner
+    this.generalService.loading('Verificando...');
     const { email, password } = this.loginForm.value;
 
     const datos = { email, password };
 
     this.registroService.login(datos).subscribe({
       next: (res: any) => {
+        // ocultar spinner
+        this.generalService.loadingDismiss();
         if (res.token) {
           this.generalService.guardarToken(res.token);
-          this.generalService.presentToast('Inicio de sesión exitoso', 'success');
+          this.generalService.presentToast(
+            'Inicio de sesión exitoso',
+            'success'
+          );
           this.router.navigate(['/nuevos']);
         } else {
           this.generalService.presentToast('Respuesta inválida del servidor');
         }
       },
       error: () => {
+        // ocultar spinner
+        this.generalService.loadingDismiss();
         this.generalService.presentToast('Email o contraseña incorrectos');
       },
     });
