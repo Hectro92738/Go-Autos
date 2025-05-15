@@ -280,7 +280,7 @@ export class RegistroComponent implements OnInit {
               'Inicio de sesión exitoso',
               'success'
             );
-            this.router.navigate(['/nuevos']);
+            this.router.navigate(['/home']);
           } else {
             this.generalService.presentToast('Respuesta inválida del servidor');
           }

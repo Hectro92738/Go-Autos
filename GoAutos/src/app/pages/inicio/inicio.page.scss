@@ -58,8 +58,20 @@ ion-content {
   @media (max-width: 768px) {
     border-radius: 0px;
     margin: 0px auto;
+  padding-bottom: 100%;
   }
 
+  .btn_regresar{
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ffffff3a;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 11px;
+  }
   .link-registro {
     margin-top: 20px;
     font-size: 14px;

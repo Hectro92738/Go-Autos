@@ -57,7 +57,7 @@ export class MenulateralComponent implements OnInit {
           handler: () => {
             this.generalService.eliminarToken();
             this.cerrarMenu();
-            this.router.navigate(['/login']);
+            this.router.navigate(['/home']);
             this.generalService.alert(
               '¡Saliste de ti sesión!',
               '¡Hasta pronto!',

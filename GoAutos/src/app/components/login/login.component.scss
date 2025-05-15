@@ -117,5 +117,21 @@
       transform: translateY(-50%);
     }
   }
-}
 
+  ion-note {
+    font-size: 12px;
+    // font-weight: bold;
+    margin-top: -15px;
+    margin-bottom: 10px;
+    --color: #ffffff;
+    // text-shadow:
+    //   -0.5px -0.5px 0 rgba(255, 0, 0, 0.129),
+    //   0.5px -0.5px 0 rgba(255, 0, 0, 0.129),
+    //   -0.5px 0.5px 0 rgba(255, 0, 0, 0.129),
+    //   0.5px 0.5px 0 rgba(255, 0, 0, 0.129);
+
+    letter-spacing: 0.08em; // Espaciado entre letras
+    word-spacing: 0.3em; // Espaciado entre palabras
+    // line-height: 1.5; //separación entre lineas vetialmente
+  }
+}
