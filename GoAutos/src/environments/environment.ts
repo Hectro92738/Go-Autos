@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  api_key: "https://go-autos-back.vercel.app/api",
+  // api_key: "https://go-autos-back.vercel.app/api",
+  api_key: "https://goautos-backend-1002994682941.us-central1.run.app/api",
+  // api_key: 'http://localhost:5000/api',
+  api_token: "2b736b87-1e87-4763-9943-11dabc480450",
 };
 
 /*

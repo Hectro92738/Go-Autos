@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { GeneralService } from '../../services/general.service';
+import { CarsService } from '../../services/cars.service';
 import { FiltroPopoverComponent } from '../../components/filtro-popover/filtro-popover.component';
 import { PopoverController } from '@ionic/angular';
-
 
 interface Auto {
   marca: string;
@@ -14,30 +14,25 @@ interface Auto {
   imagen: string;
 }
 
-
 @Component({
   selector: 'app-nuevos',
   templateUrl: './nuevos.page.html',
   styleUrls: ['./nuevos.page.scss'],
   standalone: false,
 })
-
-
 export class NuevosPage implements OnInit {
   esDispositivoMovil: boolean = false;
-
+  autosStorage: any[] = [];
   filtros = [
     { label: '$', tipo: 'precio' },
     { label: 'Color', tipo: 'color' },
     { label: 'Año', tipo: 'anio' },
     { label: 'Marca', tipo: 'marca' },
   ];
-
   paginaActual = 1;
   itemsPorPagina = 10;
   totalPaginas = 1;
   paginas: number[] = [];
-
   autos: Auto[] = [
     {
       marca: 'Chevrolet',
@@ -143,28 +138,37 @@ export class NuevosPage implements OnInit {
   constructor(
     private menu: MenuController,
     private generalService: GeneralService,
-    private popoverCtrl: PopoverController
+    private popoverCtrl: PopoverController,
+    private carsService: CarsService
   ) {}
 
   ngOnInit() {
-    // this.mostrarBienvenida();
     this.generalService.dispositivo$.subscribe((tipo) => {
       this.esDispositivoMovil = tipo === 'telefono' || tipo === 'tablet';
     });
-
+    this.getCarsNews();
     this.calcularPaginacion();
   }
 
-  mostrarBienvenida() {
-    const splashMostrado = localStorage.getItem('splashMostrado');
-    if (splashMostrado) {
-      this.showSplash = false;
-    } else {
-      setTimeout(() => {
-        this.showSplash = false;
-        localStorage.setItem('splashMostrado', 'true');
-      }, 5000);
-    }
+  getCarsNews() {
+    this.carsService.getCarsNews().subscribe({
+      next: (res: any) => {
+        this.autosStorage = res.map((auto: any) => ({
+          ...auto,
+          imagen: auto.imagenes?.[0] || '/assets/default-car.webp', 
+        }));
+        // this.generalService.alert(
+        //   '¡Autos optenidos correctamente!',
+        //   '✅ Autos nuevos listos para ver.'
+        // );
+      },
+      error: (err) => {
+        // ocultar spinner
+        this.generalService.loadingDismiss();
+        const mensaje = err?.error?.message || 'Ocurrió un error inesperado';
+        this.generalService.alert('Error al guardar los datos', mensaje);
+      },
+    });
   }
 
   async mostrarOpciones(ev: Event, tipo: string) {
@@ -183,7 +187,6 @@ export class NuevosPage implements OnInit {
       // Aquí puedes aplicar el filtro real
     }
   }
-
 
   //  --- # Calculación de paginación --- #
 

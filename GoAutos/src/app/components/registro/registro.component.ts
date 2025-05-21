@@ -280,8 +280,8 @@ export class RegistroComponent implements OnInit {
             '¡Bienvenido a Go Autos!',
             'Tu registro ha sido exitoso.'
           );
-          if (res.token) {
-            this.generalService.guardarToken(res.token);
+          if (res.token && res.user) {
+            this.generalService.guardarCredenciales(res.token, res.user);
             this.generalService.presentToast(
               'Inicio de sesión exitoso',
               'success'

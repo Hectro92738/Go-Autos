@@ -1,0 +1,321 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <div class="perfil-header">
+        <img src="/assets/icon/goautos1.webp" alt="Go Autos" class="logo" />
+        <span class="titulo-perfil">Agrega auto</span>
+      </div>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="autoForm" (ngSubmit)="guardarAuto()">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="3">
+          <h3>Agregar Auto</h3>
+        </ion-col>
+        <ion-col size="12" size-md="auto">
+          <ion-button type="button" color="dark" (click)="cerrarModal()">
+            Cancelar
+          </ion-button>
+          <!-- Botón Agregar -->
+          <ion-button type="submit" style="width: 150px;" color="danger">
+            Agregar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <hr>
+    <ion-accordion-group expand="first">
+
+      <!-- 🟦 Información General -->
+      <ion-accordion value="general">
+        <ion-item slot="header" color="light">
+          <ion-label>Información General</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <ion-grid>
+            <ion-row>
+              <!-- Columna 1 -->
+              <ion-col size="12" size-md="4">
+
+                <ion-label class="ion-padding-start">Placa <p>(opcional)</p></ion-label>
+                <ion-item lines="none">
+                  <ion-input formControlName="placas" type="text" fill="outline" placeholder="QRO-000-000"
+                    maxlength="8"></ion-input>
+                </ion-item>
+
+                <!-- tipo de venta  -->
+                <ion-label class="ion-padding-start">Tipo de venta <span class="span_force">*</span></ion-label>
+                <ion-item lines="none">
+                  <ion-select formControlName="tipoVenta" interface="popover" placeholder="Selecciona el tipo de venta"
+                    fill="outline">
+                    <ion-select-option value="nuevo">🚗 Nuevo</ion-select-option>
+                    <ion-select-option value="seminuevo">🛠️ Seminuevo</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <!-- Marca -->
+                <ion-label class="ion-padding-start">Marca <span class="span_force">*</span></ion-label>
+                <ion-item lines="none">
+                  <ion-select formControlName="marca" fill="outline" interface="popover"
+                    placeholder="Selecciona una marca">
+                    <ion-select-option *ngFor="let marca of marcas" [value]="marca">{{ marca }}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <ion-label class="ion-padding-start">Modelo <span class="span_force">*</span></ion-label>
+                <ion-item lines="none">
+                  <ion-input formControlName="modelo" type="text" fill="outline" placeholder="----------"></ion-input>
+                </ion-item>
+
+                <!-- Año -->
+                <ion-label class="ion-padding-start">Año <span class="span_force">*</span></ion-label>
+                <ion-item lines="none">
+                  <ion-select formControlName="anio" fill="outline" interface="popover" placeholder="Selecciona el año">
+                    <ion-select-option *ngFor="let anio of anios_select" [value]="anio">{{ anio }}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+              </ion-col>
+
+              <!-- Columna 2 -->
+              <ion-col size="12" size-md="4">
+                <!-- Tipo -->
+                <ion-label class="ion-padding-start">Tipo <span class="span_force">*</span></ion-label>
+                <ion-item lines="none">
+                  <ion-select formControlName="tipo" fill="outline" interface="popover"
+                    placeholder="Selecciona el tipo">
+                    <ion-select-option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <!-- Tracción -->
+                <ion-label class="ion-padding-start">Tracción <span class="span_force">*</span></ion-label>
+                <ion-item lines="none">
+                  <ion-select formControlName="traccion" fill="outline" interface="popover"
+                    placeholder="Selecciona tracción">
+                    <ion-select-option value="FWD">FWD - Delantera</ion-select-option>
+                    <ion-select-option value="RWD">RWD - Trasera</ion-select-option>
+                    <ion-select-option value="AWD">AWD - Total</ion-select-option>
+                    <ion-select-option value="4x4">4x4 - 4 ruedas</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <!-- Transmisión -->
+                <ion-label class="ion-padding-start">Transmisión <span class="span_force">*</span></ion-label>
+                <ion-item lines="none">
+                  <ion-select formControlName="transmision" fill="outline" interface="popover"
+                    placeholder="Selecciona transmisión">
+                    <ion-select-option *ngFor="let t of transmisiones" [value]="t">{{ t }}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <!-- Combustible -->
+                <ion-label class="ion-padding-start">Combustible <span class="span_force">*</span></ion-label>
+                <ion-item lines="none">
+                  <ion-select formControlName="combustible" fill="outline" interface="popover"
+                    placeholder="Selecciona combustible">
+                    <ion-select-option value="Gasolina">Gasolina</ion-select-option>
+                    <ion-select-option value="Diésel">Diésel</ion-select-option>
+                    <ion-select-option value="Eléctrico">Eléctrico</ion-select-option>
+                    <ion-select-option value="Híbrido">Híbrido</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <!-- Cilindros -->
+                <ion-label class="ion-padding-start">Cilindros <span class="span_force">*</span></ion-label>
+                <ion-item lines="none">
+                  <ion-select formControlName="cilindros" fill="outline" interface="popover"
+                    placeholder="Selecciona cilindros">
+                    <ion-select-option *ngFor="let c of cilindros" [value]="c">{{ c }}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+
+              <!-- Columna 3 -->
+              <ion-col size="12" size-md="4">
+
+                <ion-label class="ion-padding-start">Kilometraje</ion-label>
+                <ion-item lines="none">
+                  <ion-input formControlName="kilometraje" fill="outline" placeholder="25,000 km"
+                    type="text"></ion-input>
+                </ion-item>
+                <ion-text color="danger"
+                  *ngIf="autoForm.get('kilometraje')?.hasError('max') && autoForm.get('kilometraje')?.touched">
+                  El kilometraje no puede superar los 300,000 km.
+                </ion-text>
+
+                <!-- Puertas -->
+                <ion-label class="ion-padding-start">Puertas <span class="span_force">*</span></ion-label>
+                <ion-item lines="none">
+                  <ion-select formControlName="puertas" fill="outline" interface="popover"
+                    placeholder="Selecciona puertas">
+                    <ion-select-option *ngFor="let p of [2, 4, 8]" [value]="p">{{ p }}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <!-- Color -->
+                <ion-label class="ion-padding-start">Color <span class="span_force">*</span></ion-label>
+                <ion-item lines="none">
+                  <ion-select formControlName="color" fill="outline" interface="popover" placeholder="Selecciona color">
+                    <ion-select-option *ngFor="let color of colores" [value]="color">{{ color }}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <ion-label class="ion-padding-start">Descripción <span class="span_force">*</span></ion-label>
+                <ion-item lines="none">
+                  <ion-textarea formControlName="descripcion" fill="outline" placeholder="Descripción"
+                    auto-grow="true"></ion-textarea>
+                </ion-item>
+                <ion-text color="danger" *ngIf="autoForm.get('descripcion')?.hasError('maxWords')">
+                  La descripción no puede exceder 100 palabras.
+                </ion-text>
+
+
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-accordion>
+
+      <!-- interface="popover"  -->
+
+      <!-- 💰 Información Comercial -->
+      <ion-accordion value="comercial">
+        <ion-item slot="header" color="light">
+          <ion-label>Información Comercial</ion-label>
+        </ion-item>
+
+        <div class="ion-padding" slot="content">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12" size-md="3">
+                <ion-item lines="">
+                  <ion-label position="floating" fill="outline">Moneda <span class="span_force">*</span></ion-label>
+                  <ion-select formControlName="moneda">
+                    <ion-select-option value="MXN">MXN</ion-select-option>
+                    <ion-select-option value="USD">USD</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="12" size-md="6">
+
+                <ion-label class="ion-padding-start">Precio <span class="span_force">*</span></ion-label>
+                <ion-item lines="none">
+                  <ion-input formControlName="precio" fill="outline" placeholder="100,000.00 (MXN)"
+                    type="text"></ion-input>
+                </ion-item>
+
+                <ion-text color="danger"
+                  *ngIf="autoForm.get('precio')?.hasError('max') && autoForm.get('precio')?.touched">
+                  El precio no puede superar los 10 millones.
+                </ion-text>
+
+
+
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-accordion>
+
+
+      <!-- 📌 Ubicación -->
+      <ion-accordion value="ubicacion">
+        <ion-item slot="header" color="light">
+          <ion-label>Ubicación actual</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <ion-text color="medium">{{ direccion }}</ion-text>
+
+          <div style="margin-top: 1rem;">
+            <iframe width="100%" height="250" frameborder="0" style="border:0; border-radius: 12px;"
+              [src]="getMapaUrl()" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </ion-accordion>
+
+
+      <!-- 📸 Imágenes -->
+      <ion-accordion value="imagenes">
+        <ion-item slot="header" color="light">
+          <ion-label>Imágenes del Auto (máx. 10)</ion-label>
+        </ion-item>
+
+        <div class="ion-padding" slot="content">
+          <ion-item lines="none">
+            <!-- <input type="file" accept="image/*" multiple (change)="onImagenesSeleccionadas($event)"
+              [disabled]="imagenes.length >= 5" /> -->
+            <label class="boton-archivo-img">
+              <input type="file" accept="image/*" multiple (change)="onImagenesSeleccionadas($event)"
+                [disabled]="imagenes.length >= 11" />
+              Subir Imagenes
+            </label>
+          </ion-item>
+
+          <div class="preview-container">
+            <div *ngFor="let img of imagenesPreview; let i = index" class="preview-box">
+              <img [src]="img" alt="preview" />
+              <ion-icon name="close-circle" (click)="eliminarImagen(i)"></ion-icon>
+            </div>
+          </div>
+
+          <ion-text color="danger" *ngIf="imagenes.length > 10">
+            Solo se permiten hasta 10 imágenes.
+          </ion-text>
+        </div>
+      </ion-accordion>
+
+      <!-- 📄 Factura PDF -->
+      <ion-accordion value="facturaPDF">
+        <ion-item slot="header" color="light">
+          <ion-label>Factura del Auto (PDF)</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12" size-md="4">
+                <ion-item lines="none" class="upload-item">
+                  <label class="boton-archivo">
+                    <input type="file" accept="application/pdf" (change)="onFacturaSeleccionada($event)"
+                      [disabled]="facturaSeleccionada !== null" />
+                    Subir Factura PDF
+                  </label>
+                </ion-item>
+
+                <div class="preview-pdf" *ngIf="facturaSeleccionada">
+                  <ion-icon name="document-text-outline"></ion-icon>
+                  <span class="facturaNombre">{{ facturaNombre }}</span>
+                  <ion-buttons slot="end">
+                    <ion-button fill="clear" color="danger" (click)="eliminarFacturaPDF()">
+                      <ion-icon name="trash-outline"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </div>
+              </ion-col>
+              <ion-col size="12" size-md="8">
+                <!-- Vista previa automática del PDF -->
+                <div class="preview-pdf" *ngIf="facturaSeleccionada">
+                  <iframe [src]="facturaSeleccionada" width="100%" height="200px" frameborder="0"
+                    style="border: 1px solid #ccc; border-radius: 8px;"></iframe>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+
+      </ion-accordion>
+
+    </ion-accordion-group>
+  </form>
+</ion-content>

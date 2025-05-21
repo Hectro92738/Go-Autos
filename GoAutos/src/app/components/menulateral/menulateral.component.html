@@ -12,15 +12,19 @@
 
   <ion-content class="ion-padding">
     <ion-list>
-      <ion-item button>
-        <ion-icon name="person-outline"></ion-icon>
+      <ion-item *ngIf="isLoggedIn" (click)="abrirModalPerfil()" button>
+        <ion-icon name="person-outline" slot="start"></ion-icon>
         Perfil
       </ion-item>
-      <ion-item button>
+      <ion-item *ngIf="isLoggedIn" (click)="abrirModalNewCar()" button>
+        <ion-icon name="add-outline"></ion-icon>
+        Agregar auto
+      </ion-item>
+      <ion-item *ngIf="isLoggedIn" button>
         <ion-icon name="car-sport-outline"></ion-icon>
         Mis autos
       </ion-item>
-      <ion-item button>
+      <ion-item *ngIf="isLoggedIn" button>
         <ion-icon name="cog-outline"></ion-icon>
         Configuración
       </ion-item>
@@ -28,7 +32,6 @@
         <ion-icon name="log-in-outline"></ion-icon>
         Iniciar sesión
       </ion-item>
-
       <ion-item *ngIf="isLoggedIn" (click)="logout()" button>
         <ion-icon name="log-out-outline"></ion-icon>
         Cerrar sesión

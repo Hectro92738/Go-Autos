@@ -163,7 +163,7 @@
       </ng-container>
       <ng-container *ngIf="registroForm.get('contrasena')?.errors?.['numero']">
         Debe contener al menos un número.
-      </ng-container> 
+      </ng-container>
       <ng-container *ngIf="registroForm.get('contrasena')?.errors?.['especial']">
         Debe contener al menos un carácter especial.
       </ng-container>
@@ -193,7 +193,7 @@
 
 
     <button *ngIf="Seccionamostrar === 3" type="submit" class="btn-login" [disabled]="registroForm.invalid">
-      Reguistrarme
+      Registrarme
     </button>
     <br *ngIf="Seccionamostrar === 3">
 

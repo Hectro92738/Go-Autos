@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <div class="perfil-header">
+        <img src="/assets/icon/goautos1.webp" alt="Go Autos" class="logo" />
+        <span class="titulo-perfil">Mi perfil</span>
+      </div>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="card-perfil">
+    <ion-list lines="none">
+      <ion-item>
+        <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+        <ion-label>
+          <h2>{{ usuario?.nombre }} {{ usuario?.apellidos }}</h2>
+          <p>Nombre completo</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon slot="start" name="mail-outline"></ion-icon>
+        <ion-label>
+          <h2>{{ usuario?.email }}</h2>
+          <p>Correo electrónico</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon slot="start" name="call-outline"></ion-icon>
+        <ion-label>
+          <h2>{{ usuario?.lada }} {{ usuario?.telefono }}</h2>
+          <p>Teléfono</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon slot="start" name="accessibility-outline"></ion-icon>
+        <ion-label>
+          <h2>{{ usuario?.rol | titlecase }}</h2>
+          <p>Rol</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

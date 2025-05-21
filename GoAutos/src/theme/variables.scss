@@ -44,3 +44,38 @@ ion-header {
 // ion-header, ion-toolbar {
 //   padding-top: env(safe-area-inset-top) !important;
 // }
+
+
+.modal-fullscreen {
+  --width: 100vw !important;
+  --height: 100vh !important;
+  --max-width: 100vw !important;
+  --max-height: 100vh !important;
+  --border-radius: 0 !important;
+  --box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+ion-toolbar {
+  height: auto;
+}
+
+.modal-ancha {
+  --width: 100%;
+  --max-width: 100%;
+  // --border-radius-top-left: 12px;
+  margin-inline: auto;
+}
+
+.modal-perfil {
+  --border-radius-top-left: 15px;
+  --border-radius-top-right: 15px;
+}
+
+ion-select {
+  --padding-start: 12px;
+  --padding-end: 20px;
+  --background: white;
+  --border-radius: 6px;
+}

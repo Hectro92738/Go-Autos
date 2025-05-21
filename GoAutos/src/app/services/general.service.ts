@@ -6,6 +6,8 @@ import { environment } from '../../environments/environment';
 import { AlertController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 import { IonicModule, ToastController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +20,6 @@ export class GeneralService {
     'telefono' | 'tablet' | 'computadora'
   >('computadora');
   public dispositivo$ = this.dispositivoSubject.asObservable();
-
 
   private tokenSubject = new BehaviorSubject<boolean>(this.hasToken());
   public tokenExistente$ = this.tokenSubject.asObservable();
@@ -44,13 +45,14 @@ export class GeneralService {
 
   hasToken(): boolean {
     const token = localStorage.getItem('token');
-    console.log('Token:', token);
+    // console.log('Token:', token);
     return !!localStorage.getItem('token');
   }
 
   // Guarda token y actualiza el estado reactivo
-  guardarToken(token: string): void {
+  guardarCredenciales(token: string, user: any): void {
     localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
     this.tokenSubject.next(true);
   }
 
@@ -121,4 +123,56 @@ export class GeneralService {
     });
     toast.present();
   }
+
+  // ## ----- ----- -----
+  // que se encuentra en enviromen 
+  // api_key: 'http://localhost:5000/api',
+
+  obtenerMarcas(): string[] {
+    return [
+      'Chevrolet',
+      'Ford',
+      'Nissan',
+      'Toyota',
+      'Honda',
+      'Volkswagen',
+      'Mazda',
+      'KIA',
+      'Hyundai',
+      'BMW',
+      'Mercedes-Benz',
+      'Audi',
+      'GMC',
+      'Jeep',
+      'RAM',
+      'FIAT',
+      'Peugeot',
+      'Mitsubishi',
+      'Cadillac',
+      'Dodge',
+      'MINI',
+      'ISUZU',
+      'BYD',
+      'GWM',
+      'Geely',
+      'Zeekr',
+      'Stellantis',
+    ];
+  }
+
+  obtenerPorMarca(marca: string): Observable<any> {
+    const params = new HttpParams().set('marca', marca);
+    return this.http.get(`${environment.api_key}/cars/marca`, { params });
+  }
+
+  obtenerPorModelo(modelo: string, marca: string): Observable<any> {
+    const params = new HttpParams().set('modelo', modelo).set('marca', marca);
+    return this.http.get(`${environment.api_key}/cars/modelo`, { params });
+  }
+
+  obtenerPorAnio(modelo: string, marca: string, anio: string): Observable<any> {
+    const params = new HttpParams().set('modelo', modelo).set('marca', marca).set('anio', anio);
+    return this.http.get(`${environment.api_key}/cars/anio`, { params });
+  }
+
 }

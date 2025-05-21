@@ -37,9 +37,13 @@ export class LoginComponent {
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.loginForm.invalid) {
-      this.generalService.presentToast('Completa los campos correctamente');
+      await this.generalService.alert(
+        '¡Ups¡ a ocurrido un error',
+        'Completa los campos correctamente'
+      );
+      // this.generalService.presentToast('Completa los campos correctamente');
       return;
     }
 
@@ -53,21 +57,33 @@ export class LoginComponent {
       next: (res: any) => {
         // ocultar spinner
         this.generalService.loadingDismiss();
-        if (res.token) {
-          this.generalService.guardarToken(res.token);
-          this.generalService.presentToast(
+        if (res.token && res.user) {
+          this.generalService.alert(
             'Inicio de sesión exitoso',
-            'success'
+            'Bienvenido a Go Autos'
           );
+          this.generalService.guardarCredenciales(res.token, res.user);
+          // this.generalService.presentToast(
+          //   'Inicio de sesión exitoso',
+          //   'success'
+          // );
           this.router.navigate(['/nuevos']);
         } else {
-          this.generalService.presentToast('Respuesta inválida del servidor');
+          this.generalService.alert(
+            'Error de conexión',
+            'Ups, algo salió mal buelve a intentarlo'
+          );
+          // this.generalService.presentToast('Ups, algo salió mal buelve a intentarlo');
         }
       },
       error: () => {
         // ocultar spinner
         this.generalService.loadingDismiss();
-        this.generalService.presentToast('Email o contraseña incorrectos');
+          this.generalService.alert(
+            'Verifica tus credenciales',
+            'Email o contraseña incorrectos'
+          );
+        // this.generalService.presentToast('Email o contraseña incorrectos');
       },
     });
   }

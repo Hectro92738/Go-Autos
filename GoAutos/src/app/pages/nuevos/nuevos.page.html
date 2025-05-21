@@ -14,7 +14,7 @@
     </ion-row>
 
     <div class="catalogo-autos">
-      <div class="auto-card" *ngFor="let auto of autosPaginados">
+      <div class="auto-card" *ngFor="let auto of autosStorage">
         <div class="imagen-container">
           <img [src]="auto.imagen" [alt]="auto.modelo" loading="lazy" />
         </div>
@@ -26,19 +26,14 @@
             {{ auto.precio | currency: 'MXN':'symbol':'1.0-0' }}
           </h2>
           <p class="tipo">
-            Nuevo
+            {{ auto.tipoVenta === 'nuevo' ? 'Nuevo' : 'Seminuevo' }}
           </p>
         </div>
       </div>
     </div>
 
-
     <div class="paginacion" *ngIf="totalPaginas > 1">
-      <button
-        class="pagina"
-        [class.activa]="paginaActual === i"
-        *ngFor="let i of paginas"
-        (click)="cambiarPagina(i)">
+      <button class="pagina" [class.activa]="paginaActual === i" *ngFor="let i of paginas" (click)="cambiarPagina(i)">
         {{ i }}
       </button>
     </div>
